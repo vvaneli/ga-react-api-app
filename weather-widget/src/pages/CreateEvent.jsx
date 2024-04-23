@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 
@@ -16,6 +16,13 @@ export default function CreateEvent() {
     })
 
     const [options, setOptions] = useState([])
+    const [currentOption, setCurrentOption] = useState({
+        lat: '',
+        lon: '',
+        country: '',
+        cityName: ''
+    })
+
 
     const [error, setError] = useState()
 
@@ -24,6 +31,13 @@ export default function CreateEvent() {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        // save data to localStorage
+        // navigate('/painting')
+    }
+
+    function handleLocation(e) {
+        setFormData({ ...formData, lat: e.target.dataset.lat, lon: e.target.dataset.lon })
+        console.log(e.target.dataset.lat)
     }
 
 
@@ -53,7 +67,6 @@ export default function CreateEvent() {
         })
     }
 
-    // localStorage
 
 
     return (
@@ -81,12 +94,17 @@ export default function CreateEvent() {
                     onChange={handleChange}
                     onKeyDown={handleSelect}
                 />
-                <select name="locations" id="locations">
+                <select name="locations" id="locations" onChange={(e) => {
+                    setCurrentOption({ ...currentOption, lat: e.target.dataset.lat, lon: e.target.dataset.lon, cityName: e.target.value, country: e.target.dataset.country })
+                }}
+                value={currentOption}
+                >
+                    {/* if location comes back with more than one result have drop down menu */}
                     {options.length > 1 ?
                         options.map(option => {
                             const { lat, lon, country, name } = option
                             return (
-                                <option key={name} value={name} data-lat={lat} data-lon={lon}>{name}, {country}</option>
+                                <option key={name} value={name} data-lat={lat} data-lon={lon} data-country={country}>{name}, {country}</option>
                         )
                         })
                         :
@@ -97,7 +115,6 @@ export default function CreateEvent() {
                     }
                 </select>
 
-                {/* if location comes back with more than one result have drop down menu */}
                 <button type='button' onClick={handleReset}>Reset</button>
                 <button type='submit'>Save Event</button>
                 <Link to={'/'}>
