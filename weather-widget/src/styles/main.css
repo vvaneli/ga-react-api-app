@@ -1,13 +1,10 @@
-$widgetWidth: 349px;
-$widgetHeight: 220px;
-
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
 }
 
 /* FLEX C */
-
 #root {
   min-height: 100vh;
   display: flex;
@@ -16,28 +13,17 @@ $widgetHeight: 220px;
 }
 
 /* FLEX I */
-
-
 section {
-  width: $widgetWidth;
-  height: $widgetHeight;
+  width: 349px;
+  height: 220px;
   overflow: hidden;
   background-color: red;
   border-radius: 15px;
   text-align: center;
 }
 
-
-#info {
-  // display: none;
-}
-
-#art {
-  // display: none;
-}
-
 .artImg {
-  height: $widgetHeight;
+  height: 220px;
   background-position: center;
 }
 
@@ -46,14 +32,14 @@ section {
 }
 
 .owFeelsLike::before {
-  content: 'May feel like ';
+  content: "May feel like ";
 }
 
 .owFeelsLike::after {
-  content: ' \00B0 C';
+  content: " °C";
 }
 
 .eventName,
 .owDescription {
   text-transform: capitalize;
-}
+}/*# sourceMappingURL=main.css.map */
