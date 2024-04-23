@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
@@ -9,7 +10,7 @@ export default function CreateEvent() {
 
     const [formData, setFormData] = useState({
         eventName: '',
-        eventDate: '',
+        eventDate: new Date(),
         eventLocation: '',
         lat: '',
         lon: '',
@@ -17,33 +18,40 @@ export default function CreateEvent() {
 
     const [options, setOptions] = useState([])
 
-    const [error, setError] = useState()
+    // const [date, setDate] = useState(new Date())
+
+    const [error, setError] = useState('')
 
     const navigate = useNavigate()
 
 
     async function handleSubmit(e) {
         e.preventDefault()
+
         // save data to localStorage
-        // navigate('/painting')
+        localStorage.setItem(`${formData.eventName}`, JSON.stringify({ ...formData }))
+        navigate('/info')
     }
+
 
     function handleLocation(option) {
         setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
     }
 
-
+    
     async function handleSelect(e) {
-        if (e.key === 'Enter') {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+        setTimeout(async () => {
             try {
                 const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${formData.eventLocation}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
                 setOptions(data)
             } catch (error) {
-                console.log(error)
+                setError(error.message)
             }
-        }
-        // console.log(options)
+
+        }, 10)
     }
+    
 
     function handleChange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -64,6 +72,7 @@ export default function CreateEvent() {
     return (
         <div className='form-page'>
             <h1>Create Event</h1>
+            {/* <form onSubmit={handleSubmit} onKeyDown={(e) => e.preventDefault()}> */}
             <form onSubmit={handleSubmit}>
                 <label htmlFor='eventName'>Event Name</label>
                 <input
@@ -75,16 +84,23 @@ export default function CreateEvent() {
                     onChange={handleChange}
                 />
                 <label htmlFor="eventDate">Event Date</label>
-                <DatePicker></DatePicker>
-                <label htmlFor="eventLocation">Event Location</label>
+                <DatePicker
+                    selected={formData.eventDate}
+                    name='eventDate'
+                    id='eventDate'
+                    value={formData.eventDate}
+                    // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
+                    onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
+                />
+                <label htmlFor="eventLocation">Event City</label>
                 <input
                     type='text'
                     name='eventLocation'
                     id='eventLocation'
                     placeholder='Insert city name and press ENTER'
                     value={formData.eventLocation}
-                    onChange={handleChange}
-                    onKeyDown={handleSelect}
+                    onChange={handleSelect}
+                    // onKeyDown={handleSelect}
                 />
                 {/* if location comes back with more than one result have drop down menu */}
                 {options.length > 1 ?
@@ -103,7 +119,7 @@ export default function CreateEvent() {
                 }
 
                 <button type='button' onClick={handleReset}>Reset</button>
-                <button type='submit'>Save Event</button>
+                <button type='submit' >Save Event</button>
                 <Link to={'/'}>
                     <button type='button'>Help</button>
                 </Link>
