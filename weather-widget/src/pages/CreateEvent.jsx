@@ -16,13 +16,6 @@ export default function CreateEvent() {
     })
 
     const [options, setOptions] = useState([])
-    const [currentOption, setCurrentOption] = useState({
-        lat: '',
-        lon: '',
-        country: '',
-        cityName: ''
-    })
-
 
     const [error, setError] = useState()
 
@@ -35,9 +28,9 @@ export default function CreateEvent() {
         // navigate('/painting')
     }
 
-    function handleLocation(e) {
-        setFormData({ ...formData, lat: e.target.dataset.lat, lon: e.target.dataset.lon })
-        console.log(e.target.dataset.lat)
+    function handleLocation(option) {
+        // setFormData({ ...formData, lat: e.target.dataset.lat, lon: e.target.dataset.lon, eventLocation: e.target.value })
+        console.log(option)
     }
 
 
@@ -94,17 +87,18 @@ export default function CreateEvent() {
                     onChange={handleChange}
                     onKeyDown={handleSelect}
                 />
-                <select name="locations" id="locations" onChange={(e) => {
+                {/* <select name="locations" id="locations" onChange={(e) => {
                     setCurrentOption({ ...currentOption, lat: e.target.dataset.lat, lon: e.target.dataset.lon, cityName: e.target.value, country: e.target.dataset.country })
                 }}
                 value={currentOption}
-                >
+                > */}
                     {/* if location comes back with more than one result have drop down menu */}
                     {options.length > 1 ?
                         options.map(option => {
                             const { lat, lon, country, name } = option
+                            console.log()
                             return (
-                                <option key={name} value={name} data-lat={lat} data-lon={lon} data-country={country}>{name}, {country}</option>
+                                <div key={lat.concat(lon)} onClick={() => handleLocation(option)}>{name}, {country}</div>
                         )
                         })
                         :
@@ -113,7 +107,7 @@ export default function CreateEvent() {
                             :
                             <p>No other options available</p>
                     }
-                </select>
+                {/* </select> */}
 
                 <button type='button' onClick={handleReset}>Reset</button>
                 <button type='submit'>Save Event</button>
