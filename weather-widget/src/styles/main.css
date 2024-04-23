@@ -1,34 +1,84 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Homemade+Apple&family=Rozha+One&family=Saira+Extra+Condensed:wght@600&display=swap");
 * {
   margin: 0;
   padding: 0;
 }
 
 /* FLEX C */
+#root,
+.iconBtn {
+  display: flex;
+}
+
 #root {
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.artBack,
+.stampForecast {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+}
+
+.iconBtn {
+  justify-content: space-evenly;
+}
+
 /* FLEX I */
+.stampForecast {
+  align-self: flex-end;
+  flex-grow: 1;
+}
+
+/* LAYOUT */
 section {
+  box-sizing: border-box;
   width: 349px;
   height: 220px;
   overflow: hidden;
-  background-color: red;
   border-radius: 15px;
+  padding: 3px;
+}
+
+/* INFO */
+#info {
+  background-color: rgb(152, 131, 107);
+  color: rgb(63, 55, 63);
+}
+
+.stampForecast {
+  rotate: 10deg;
+  padding-bottom: 6px;
+  vertical-align: bottom;
+}
+
+.iconBtn {
+  opacity: 40%;
+  cursor: pointer;
+}
+
+.iconBtn img {
+  width: 30px;
+  height: 30px;
+}
+
+.stampForecast {
+  font-family: "Abril Fatface", serif;
   text-align: center;
 }
 
-.artImg {
-  height: 220px;
-  background-position: center;
+.owFeelsLike,
+.owDescription {
+  font-size: 12px;
+  display: block;
 }
 
-#credits {
-  display: none;
+.owFeelsLike {
+  opacity: 70%;
 }
 
 .owFeelsLike::before {
@@ -42,4 +92,74 @@ section {
 .eventName,
 .owDescription {
   text-transform: capitalize;
+}
+
+.circle {
+  margin-top: auto;
+  margin-bottom: 5px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rebeccapurple;
+}
+
+.degreesNumBig {
+  font-size: 50px;
+  line-height: 76px;
+  color: rgb(218, 218, 211);
+}
+
+.stickerEvent {
+  margin: 20px 0 0 8px;
+  box-sizing: border-box;
+  padding: 16px 12px 0px 12px;
+  rotate: -10deg;
+  background-color: rgb(218, 218, 211);
+  text-align: center;
+  max-width: 244.3px;
+  font-family: "Homemade Apple", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -1px;
+  position: absolute;
+}
+
+.eventName {
+  border-bottom: 2px solid rgb(63, 55, 63);
+  font-size: 22px;
+}
+
+.eventCity {
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 0 6px;
+  letter-spacing: 1px;
+  display: inline-block;
+  line-height: 0;
+}
+
+.eventDate {
+  letter-spacing: 0.06em;
+  line-height: 16px;
+}
+
+/* ART */
+#art {
+  display: none;
+}
+
+.artImg {
+  height: 220px;
+  background-position: center;
+}
+
+/* ABOUT */
+#credits {
+  display: none;
+  background-color: red;
 }/*# sourceMappingURL=main.css.map */

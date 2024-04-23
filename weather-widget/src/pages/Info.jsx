@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react'
 import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
+import { Link } from "react-router-dom"
+
+// SVG icons
+import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
+import iconHelp from '../icons/help_FILL0_wght400_GRAD0_opsz24.svg'
+import iconInfo from '../icons/info_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function Info() {
 
@@ -11,7 +17,7 @@ export default function Info() {
   const cnt = 1 // Number() // no. of days until event day
   const lat = 51.5073219
   const lon = -0.1276474
-  const eventName = 'Sister\'s wedding'
+  const eventName = 'Sister\'s wedding and funeral'
   const eventDate = new Date().getTime()
 
   // WIDGET SIZE
@@ -49,13 +55,31 @@ export default function Info() {
         (
           <>
             <section id="info">
-              <h1 className="eventName">{eventName}</h1>
-              <p className="eventDate">{eventDate}, {eventCity.name}</p>
-              <p className="owFeelsLike">{eventDayWeather.feels_like.day}</p>
-              <p className="owDescription">{eventDayWeather.weather[0].description}</p>
+              <div className="stickerEvent">
+                <h1 className="eventName">{eventName}</h1>
+                <p className="eventCity">{eventCity.name}</p>
+                <p className="eventDate">{eventDate}</p>
+              </div>
+              <div className="artBack">
+
+                <div className="stampForecast">
+                  <div className="circle degreesNumBig"><span className="degreesNum">{(eventDayWeather.feels_like.day).toFixed(0)}</span></div>
+                  {/* <div className="circle degreesNumBig"><span className="degreesNum">00</span></div> */}
+                  <p className="owFeelsLike">{(eventDayWeather.feels_like.day).toFixed(0)}</p>
+                  <p className="owDescription">{eventDayWeather.weather[0].description}</p>
+                </div>
+
+                <div className="iconBtn">
+                  <Link to={'/create-event'}>
+                    <img src={iconEditLoc} alt="Edit event and location" />
+                  </Link>
+                  <img src={iconHelp} alt="Instructions" />
+                  <img src={iconInfo} alt="About" />
+                </div>
+              </div>
             </section>
             <section id="art">
-              <div className="artImg" style={{backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id}/full/!${imgDimension},${imgDimension}/0/default.jpg)`}}>
+              <div className="artImg" style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
               </div>
             </section>
             <section id="credits">

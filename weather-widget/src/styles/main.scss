@@ -1,5 +1,13 @@
+// @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Homemade+Apple&family=Saira+Extra+Condensed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Homemade+Apple&family=Rozha+One&family=Saira+Extra+Condensed:wght@600&display=swap');
 $widgetWidth: 349px;
 $widgetHeight: 220px;
+$colourText1: rgb(63, 55, 63);
+$colourSticker: rgb(218, 218, 211);
+$colourSticker2: rebeccapurple;
+$colourSticker3: sandybrown;
+$colourWidgetBack: rgb(152, 131, 107);
+// $colourWidgetBack: rgb(145,116,84);
 
 * {
   margin: 0;
@@ -8,41 +16,84 @@ $widgetHeight: 220px;
 
 /* FLEX C */
 
+#root,
+.iconBtn {
+  display: flex;
+}
+
 #root {
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
+// #info
+.artBack,
+.stampForecast {
+  display: flex;
+  flex-direction: column;
+  height: $widgetHeight;
+}
+
+.iconBtn {
+  justify-content: space-evenly;
+
+}
+
 /* FLEX I */
+.stampForecast {
+  align-self: flex-end;
+  flex-grow: 1;
+}
 
-
+/* LAYOUT */
 section {
+  box-sizing: border-box;
   width: $widgetWidth;
   height: $widgetHeight;
   overflow: hidden;
-  background-color: red;
   border-radius: 15px;
-  text-align: center;
+  padding: 3px;
 }
 
+/* INFO */
 
 #info {
   // display: none;
+  background-color: $colourWidgetBack;
+  color: $colourText1;
 }
 
-#art {
-  // display: none;
+.stampForecast {
+  rotate: 10deg;
+  padding-bottom: 6px;
+  vertical-align: bottom;
+  // // height: 300px;
 }
 
-.artImg {
-  height: $widgetHeight;
-  background-position: center;
+.iconBtn {
+  opacity: 40%;
+  cursor: pointer;
 }
 
-#credits {
-  display: none;
+.iconBtn img {
+  width: 30px;
+  height: 30px;
+}
+
+.stampForecast {
+  font-family: "Abril Fatface", serif;
+  text-align: center;
+}
+
+.owFeelsLike,
+.owDescription {
+  font-size: 12px;
+  display: block;
+}
+
+.owFeelsLike {
+  opacity: 70%;
 }
 
 .owFeelsLike::before {
@@ -56,4 +107,76 @@ section {
 .eventName,
 .owDescription {
   text-transform: capitalize;
+}
+
+.circle {
+  margin-top: auto;
+  margin-bottom: 5px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: $colourSticker2;
+}
+
+.degreesNumBig {
+  font-size: 50px;
+  line-height: 76px;
+  color: $colourSticker;
+}
+
+.stickerEvent {
+  margin: 20px 0 0 8px;
+  box-sizing: border-box;
+  padding: 16px 12px 0px 12px;
+  rotate: -10deg;
+  background-color: $colourSticker;
+  text-align: center;
+  max-width: calc($widgetWidth * 0.7);
+  font-family: "Homemade Apple", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -1px;
+  position: absolute;
+}
+
+.eventName {
+  border-bottom: 2px solid $colourText1;
+  font-size: 22px;
+}
+
+.eventCity {
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 0 6px;
+  letter-spacing: 1px;
+  display: inline-block;
+  line-height: 0;
+}
+
+.eventDate {
+  letter-spacing: 0.06em;
+  line-height: 16px;
+}
+
+/* ART */
+
+#art {
+  display: none;
+}
+
+.artImg {
+  height: $widgetHeight;
+  background-position: center;
+}
+
+/* ABOUT */
+
+#credits {
+  display: none;
+  background-color: red;
 }
