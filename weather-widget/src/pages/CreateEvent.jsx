@@ -29,8 +29,7 @@ export default function CreateEvent() {
     }
 
     function handleLocation(option) {
-        // setFormData({ ...formData, lat: e.target.dataset.lat, lon: e.target.dataset.lon, eventLocation: e.target.value })
-        console.log(option)
+        setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
     }
 
 
@@ -87,27 +86,21 @@ export default function CreateEvent() {
                     onChange={handleChange}
                     onKeyDown={handleSelect}
                 />
-                {/* <select name="locations" id="locations" onChange={(e) => {
-                    setCurrentOption({ ...currentOption, lat: e.target.dataset.lat, lon: e.target.dataset.lon, cityName: e.target.value, country: e.target.dataset.country })
-                }}
-                value={currentOption}
-                > */}
-                    {/* if location comes back with more than one result have drop down menu */}
-                    {options.length > 1 ?
-                        options.map(option => {
-                            const { lat, lon, country, name } = option
-                            console.log()
-                            return (
-                                <div key={lat.concat(lon)} onClick={() => handleLocation(option)}>{name}, {country}</div>
+                {/* if location comes back with more than one result have drop down menu */}
+                {options.length > 1 ?
+                    options.map(option => {
+                        const { lat, lon, country, name } = option
+                        console.log(lat, lon)
+                        return (
+                            <div key={`${lat}-${lon}`} onClick={() => handleLocation(option)}>{name}, {country}</div>
                         )
-                        })
+                    })
+                    :
+                    error ?
+                        <p>{error}</p>
                         :
-                        error ?
-                            <p>{error}</p>
-                            :
-                            <p>No other options available</p>
-                    }
-                {/* </select> */}
+                        <p>No other options available</p>
+                }
 
                 <button type='button' onClick={handleReset}>Reset</button>
                 <button type='submit'>Save Event</button>
