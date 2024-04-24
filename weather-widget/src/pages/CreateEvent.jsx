@@ -126,7 +126,7 @@ export default function CreateEvent() {
             <p class='errorMsg'>No other options available</p>
         }
         </div>
-      </form>
+
       <div className="formBtn">
         <Link to={'/'}>
           <img src={iconHelp} alt="Instructions" />
@@ -134,7 +134,7 @@ export default function CreateEvent() {
         <button type='button' onClick={handleReset}><img src={iconReset} alt="Reset" /></button>
         <button type='submit' ><img src={iconSave} alt="Save" /></button>
       </div>
-
+      </form>
     </section>
   )
 }

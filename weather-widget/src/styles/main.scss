@@ -3,11 +3,13 @@
 $widgetWidth: 349px;
 $widgetHeight: 220px;
 $colourText1: rgb(63, 55, 63);
+$colourText2: rgba(0,0,0,0.9);
 $colorTextError: rgb(181, 12, 12);
 $colourSticker: rgb(218, 218, 211);
 $colourSticker2: rebeccapurple;
 $colourSticker3: sandybrown;
 $colourWidgetBack: rgb(152, 131, 107);
+$colourWidgetShadow: rgba(0,0,0,0.15);
 // $colourWidgetBack: rgb(145,116,84);
 
 * {
@@ -70,14 +72,14 @@ section {
   overflow: hidden;
   border-radius: 15px;
   background-color: $colourWidgetBack;
-
+  box-shadow: 15px 15px 10px 5px $colourWidgetShadow; // x offset, y offset, blur, spread
 }
 
 /* INFO */
 
 #info {
   // display: none;
-  color: $colourText1;
+  color: $colourText2;
 }
 
 .stampForecast {
@@ -94,7 +96,7 @@ section {
 }
 
 .iconBtn {
-  opacity: 40%;
+  opacity: 55%;
 }
 
 .formBtn img {
@@ -226,6 +228,7 @@ margin-bottom: 8px;
 
 .formBtn {
   height: 30px;
+  margin-top: 35px; // hack
 }
 
 input, label {
@@ -265,7 +268,7 @@ box-sizing: border-box;
 }
 
 .notifications::before {
-  content: ' PICK A CITY:';
+  content: 'PICK A CITY:';
 }
 
 .errorMsg {

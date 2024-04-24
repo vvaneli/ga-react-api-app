@@ -8,7 +8,8 @@ import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHelp from '../icons/help_FILL0_wght400_GRAD0_opsz24.svg'
 import iconInfo from '../icons/info_FILL0_wght400_GRAD0_opsz24.svg'
 import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
-
+// Image
+import back from '../icons/frame-back.jpg'
 
 export default function Info() {
 
@@ -55,7 +56,7 @@ export default function Info() {
       {eventDayWeather ?
         (
           <>
-            <section id="info">
+            <section id="info" style={{ backgroundImage: `url(${back})` }}>
               <div className="stickerEvent">
                 <h1 className="eventName">{eventName}</h1>
                 <p className="eventCity">{eventCity.name}</p>
