@@ -109,6 +109,7 @@ export default function CreateEvent() {
         // onKeyDown={handleSelect}
         />
         <br />
+        <div className="notifications">
         {/* if location comes back with more than one result have drop down menu */}
         {options.length > 1 ?
           options.map(option => {
@@ -124,6 +125,7 @@ export default function CreateEvent() {
             :
             <p class='errorMsg'>No other options available</p>
         }
+        </div>
       </form>
       <div className="formBtn">
         <Link to={'/'}>

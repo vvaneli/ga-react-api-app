@@ -3,6 +3,7 @@
 $widgetWidth: 349px;
 $widgetHeight: 220px;
 $colourText1: rgb(63, 55, 63);
+$colorTextError: rgb(181, 12, 12);
 $colourSticker: rgb(218, 218, 211);
 $colourSticker2: rebeccapurple;
 $colourSticker3: sandybrown;
@@ -246,4 +247,27 @@ input {
 
 .errorMsg, .cityOption {
   margin-left: 45px;
+}
+
+.notifications {
+  min-width: calc($widgetWidth - 40px);
+position: absolute;
+background: $colourSticker;
+margin-top: calc(($widgetHeight / 2) - 30px);
+padding-right: 40px;
+padding-left: 10px;
+box-sizing: border-box;
+}
+
+.cityOption {
+  border-bottom: 1px dotted $colourWidgetBack;
+  padding: 5px;
+}
+
+.notifications::before {
+  content: ' PICK A CITY:';
+}
+
+.errorMsg {
+  color: $colorTextError;
 }
