@@ -9,7 +9,7 @@ import './styles/main.scss'
 // Page Components
 import Welcome from './pages/Welcome.jsx'
 import CreateEvent from './pages/CreateEvent.jsx'
-import Painting from './pages/Painting.jsx'
+import Art from './pages/Art.jsx'
 import Info from './pages/Info.jsx'
 
 const router = createBrowserRouter([
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         element: <CreateEvent />
       },
       {
-        path: 'painting',
-        element: <Painting />
+        path: 'art',
+        element: <Art />
       },
       {
         path: 'info',

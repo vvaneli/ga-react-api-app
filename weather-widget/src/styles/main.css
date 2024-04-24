@@ -7,7 +7,8 @@
 
 /* FLEX C */
 #root,
-.iconBtn {
+.iconBtn,
+.formBtn {
   display: flex;
 }
 
@@ -18,13 +19,14 @@
 }
 
 .artBack,
-.stampForecast {
+.stampForecast,
+.form-page {
   display: flex;
   flex-direction: column;
   height: 220px;
 }
 
-.iconBtn {
+.iconBtn, .formBtn {
   justify-content: space-evenly;
 }
 
@@ -34,19 +36,30 @@
   flex-grow: 1;
 }
 
+.form {
+  flex-grow: 1;
+}
+
 /* LAYOUT */
+body {
+  font-family: "Saira Extra Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
 section {
   box-sizing: border-box;
   width: 349px;
   height: 220px;
   overflow: hidden;
   border-radius: 15px;
-  padding: 3px;
+  background-color: rgb(152, 131, 107);
 }
 
 /* INFO */
 #info {
-  background-color: rgb(152, 131, 107);
   color: rgb(63, 55, 63);
 }
 
@@ -56,14 +69,18 @@ section {
   vertical-align: bottom;
 }
 
-.iconBtn {
-  opacity: 40%;
+.iconBtn img, .formBtn img {
   cursor: pointer;
-}
-
-.iconBtn img {
   width: 30px;
   height: 30px;
+}
+
+.iconBtn {
+  opacity: 40%;
+}
+
+.formBtn img {
+  opacity: 60%;
 }
 
 .stampForecast {
@@ -78,7 +95,7 @@ section {
 }
 
 .owFeelsLike {
-  opacity: 70%;
+  opacity: 75%;
 }
 
 .owFeelsLike::before {
@@ -149,17 +166,61 @@ section {
 }
 
 /* ART */
-#art {
-  display: none;
+section#art {
+  background-color: none;
 }
 
 .artImg {
   height: 220px;
   background-position: center;
+  border-radius: 15px;
 }
 
 /* ABOUT */
 #credits {
   display: none;
-  background-color: red;
+}
+
+/* CREATE EVENT */
+.form-page {
+  padding: 10px;
+}
+
+.form-page h1 {
+  text-align: center;
+  font-size: 22px;
+}
+
+.form-page button {
+  background: none;
+  border: 0;
+  margin-bottom: 8px;
+}
+
+.form {
+  margin: 0 auto;
+  width: 309px;
+}
+
+.formBtn {
+  height: 30px;
+}
+
+input, label {
+  display: inline-block;
+  padding: 3px;
+}
+
+label {
+  width: 40px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+input {
+  width: 249px;
+}
+
+.errorMsg, .cityOption {
+  margin-left: 45px;
 }/*# sourceMappingURL=main.css.map */
