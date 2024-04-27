@@ -36,8 +36,6 @@ export default function Info() {
   //       }
 
 
-
-
   useEffect(() => {
       const event = JSON.parse(storedEvent)
       setEventData(event)

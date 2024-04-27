@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
+// import "react-datepicker/dist/react-datepicker.css" // copied to SCSS partial
 
 // SVG icons
 // import iconEdit from '../icons/edit_FILL0_wght400_GRAD0_opsz24.svg'
@@ -25,6 +25,10 @@ export default function CreateEvent() {
   const [options, setOptions] = useState([])
 
   // const [date, setDate] = useState(new Date())
+
+  // Max selectable date for date picker
+  const today = new Date()
+  const maxDate = today.setDate(today.getDate() + 30) // Advance Forecast = 30 days
 
   const [error, setError] = useState('')
 
@@ -71,7 +75,7 @@ export default function CreateEvent() {
       lon: '',
     })
   }
-
+  // const [datePicked, setDatePicked] = useState(new Date());
   return (
     <section className='form-page'>
       <h1>Watch the weather for an upcoming event</h1>
@@ -83,7 +87,8 @@ export default function CreateEvent() {
           type='text'
           name='eventName'
           id='eventName'
-          placeholder='Insert event name'
+          placeholder="What's the occasion?"
+          required
           value={formData.eventName}
           onChange={handleChange}
         />
@@ -94,16 +99,25 @@ export default function CreateEvent() {
           name='eventDate'
           id='eventDate'
           value={formData.eventDate}
+          // format="dd-MMMM"
+          dateFormat="EEEE dd MMMM"
+          minDate={new Date()}
+          maxDate={maxDate}
+          placeholderText="Up to 30 days in advance"
+          // selected={ !formData.eventDate ? 'form data true' : 'form data false' }
+          required
+          nativeInputAriaLabel
           // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
-          onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
+          onChange={ date => setFormData({ ...formData, eventDate: date.getTime() })}
         />
-        <br />
+        {/* <br /> */}
         <label htmlFor="eventLocation">City</label>
         <input
           type='text'
           name='eventLocation'
           id='eventLocation'
           placeholder='Insert city name and press ENTER'
+          required
           value={formData.eventLocation}
           onChange={handleSelect}
         // onKeyDown={handleSelect}
@@ -121,9 +135,9 @@ export default function CreateEvent() {
           })
           :
           error ?
-            <p class='errorMsg'>{error}</p>
+            <p className='errorMsg'>{error}</p>
             :
-            <p class='errorMsg'>No other options available</p>
+            <p className='errorMsg'>No other options available</p>
         }
         </div>
 
