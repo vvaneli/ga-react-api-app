@@ -119,11 +119,11 @@ section {
 }
 
 .owFeelsLike::before {
-  content: 'May feel like ';
+  content: 'Feels like ';
 }
 
 .owFeelsLike::after {
-  content: ' \00B0 C';
+  content: '\00B0' + 'C';
 }
 
 .eventName,
@@ -141,9 +141,10 @@ section {
 }
 
 .degreesNumBig {
-  font-size: 50px;
-  line-height: 76px;
+  font-size: 44px;
+  line-height: 80px;
   color: $colourSticker;
+  // letter-spacing: -0.01em;
 }
 
 .stickerEvent {

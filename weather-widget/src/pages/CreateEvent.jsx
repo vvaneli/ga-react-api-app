@@ -5,6 +5,9 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 
 // SVG icons
+// import iconEdit from '../icons/edit_FILL0_wght400_GRAD0_opsz24.svg'
+// import iconCal from '../icons/event_FILL0_wght400_GRAD0_opsz24.svg'
+// import iconLocation from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHelp from '../icons/help_FILL0_wght400_GRAD0_opsz24.svg'
 import iconReset from '../icons/delete_FILL0_wght400_GRAD0_opsz24.svg'
 import iconSave from '../icons/check_circle_FILL0_wght400_GRAD0_opsz24.svg'
