@@ -61,7 +61,7 @@ $colourWidgetShadow: rgba(0,0,0,0.15);
 /* LAYOUT */
 
 body {
-  font-family: "Saira Extra Condensed", sans-serif;
+  font-family: 'Saira Extra Condensed', sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 16px;
@@ -107,7 +107,7 @@ section {
 }
 
 .stampForecast {
-  font-family: "Abril Fatface", serif;
+  font-family: 'Abril Fatface', serif;
   text-align: center;
 }
 
@@ -151,14 +151,16 @@ section {
 }
 
 .stickerEvent {
+  max-width: calc($widgetWidth * 0.7);
+  max-height: calc($widgetHeight * 0.56);
+  // overflow: hidden;
   margin: 20px 0 0 8px;
   box-sizing: border-box;
-  padding: 16px 12px 0px 12px;
+  padding: 14px 12px 0px 12px;
   rotate: -10deg;
   background-color: $colourSticker;
   text-align: center;
-  max-width: calc($widgetWidth * 0.7);
-  font-family: "Homemade Apple", cursive;
+  font-family: 'Homemade Apple', cursive;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -170,15 +172,16 @@ section {
 .eventName {
   border-bottom: 2px solid $colourText1;
   font-size: 22px;
+  overflow-wrap: break-word;
 }
 
 .eventCity {
-  font-family: "Saira Extra Condensed", sans-serif;
+  font-family: 'Saira Extra Condensed', sans-serif;
   font-weight: 600;
   font-style: normal;
   text-transform: uppercase;
   font-size: 12px;
-  padding: 0 6px;
+  // padding: 0 6px;
   letter-spacing: 1px;
   display: inline-block;
   line-height: 0;
@@ -186,7 +189,9 @@ section {
 
 .eventDate {
   letter-spacing: 0.06em;
-  line-height: 16px;
+  line-height: 13px;
+  padding-bottom: 10px;
+  font-size: 14px;
 }
 
 /* ART */

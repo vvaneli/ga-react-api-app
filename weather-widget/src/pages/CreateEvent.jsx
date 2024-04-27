@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
-// import "react-datepicker/dist/react-datepicker.css" // copied to SCSS partial
+// import 'react-datepicker/dist/react-datepicker.css' // copied to SCSS partial
 
 // SVG icons
 // import iconEdit from '../icons/edit_FILL0_wght400_GRAD0_opsz24.svg'
@@ -80,7 +80,7 @@ export default function CreateEvent() {
     <section className='form-page'>
       <h1>Watch the weather for an upcoming event</h1>
       {/* <form onSubmit={handleSubmit} onKeyDown={(e) => e.preventDefault()}> */}
-      <form className="form" onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
 
         <label htmlFor='eventName'>Event </label>
         <input
@@ -88,30 +88,29 @@ export default function CreateEvent() {
           name='eventName'
           id='eventName'
           placeholder="What's the occasion?"
+          maxLength='25'
           required
           value={formData.eventName}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="eventDate">Date</label>
+        <label htmlFor='eventDate'>Date</label>
         <DatePicker
           selected={formData.eventDate}
           name='eventDate'
           id='eventDate'
           value={formData.eventDate}
-          // format="dd-MMMM"
-          dateFormat="EEEE dd MMMM"
+          dateFormat='EEEE dd MMMM'
           minDate={new Date()}
           maxDate={maxDate}
-          placeholderText="Up to 30 days in advance"
-          // selected={ !formData.eventDate ? 'form data true' : 'form data false' }
+          placeholderText='Up to 30 days in advance'
           required
           nativeInputAriaLabel
           // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
           onChange={ date => setFormData({ ...formData, eventDate: date.getTime() })}
         />
         {/* <br /> */}
-        <label htmlFor="eventLocation">City</label>
+        <label htmlFor='eventLocation'>City</label>
         <input
           type='text'
           name='eventLocation'
@@ -123,7 +122,7 @@ export default function CreateEvent() {
         // onKeyDown={handleSelect}
         />
         <br />
-        <div className="notifications">
+        <div className='notifications'>
         {/* if location comes back with more than one result have drop down menu */}
         {options.length > 1 ?
           options.map(option => {
@@ -141,12 +140,12 @@ export default function CreateEvent() {
         }
         </div>
 
-      <div className="formBtn">
+      <div className='formBtn'>
         <Link to={'/'}>
-          <img src={iconHelp} alt="Instructions" />
+          <img src={iconHelp} alt='Instructions' />
         </Link>
-        <button type='button' onClick={handleReset}><img src={iconReset} alt="Reset" /></button>
-        <button type='submit' ><img src={iconSave} alt="Save" /></button>
+        <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
+        <button type='submit' ><img src={iconSave} alt='Save' /></button>
       </div>
       </form>
     </section>

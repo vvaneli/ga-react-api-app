@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 // SVG icons
 import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
@@ -19,6 +19,11 @@ export default function Info() {
   const [eventCity, setEventCity] = useState()
   const [cnt, setCnt] = useState()
   const [error, setError] = useState('')
+
+  // To Show Formatted Date
+  const dayOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  const month = ['Jan','Feb','Mar','April','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+  // const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 
   //! UPDATE WITH LOCAL STORAGE ITEMS
@@ -79,7 +84,6 @@ export default function Info() {
       if (eventData) {
           getEventInfo()
 
-
       }
   }, [eventData, cnt, setCnt])
 
@@ -89,38 +93,39 @@ export default function Info() {
         {eventDayWeather ?    
           (
             <>
-              <section id="info" style={{ backgroundImage: `url(${back})` }}>
-                <div className="stickerEvent">
-                  <h1 className="eventName">{eventData.eventName}</h1>
-                  <p className="eventCity">{eventData.eventLocation}</p>
-                  <p className="eventDate">{new Date(eventData.eventDate).toISOString().substring(0, 10)}</p>
+              <section id='info' style={{ backgroundImage: `url(${back})` }}>
+                <div className='stickerEvent'>
+                  <h1 className='eventName'>{eventData.eventName}</h1>
+                  <p className='eventCity'>{eventData.eventLocation}</p>
+                  <p className='eventDate'>{dayOfWeek[new Date(eventData.eventDate).getDay()]} {new Date(eventData.eventDate).getDate()} {month[new Date(eventData.eventDate).getMonth()]}</p>
+                  {/* <p className='eventDate'>{new Date(eventData.eventDate).toISOString().substring(0, 10)}</p> */}
                 </div>
-                <div className="artBack">
-                  <div className="stampForecast">
-                    <div className="circle degreesNumBig"><span className="degreesNum">{(eventDayWeather.feels_like.day).toFixed(0)}</span></div>
-                    <p className="owFeelsLike">{(eventDayWeather.feels_like.day).toFixed(0)}</p>
-                    <p className="owDescription">{eventDayWeather.weather[0].description}</p>
+                <div className='artBack'>
+                  <div className='stampForecast'>
+                    <div className='circle degreesNumBig'><span className='degreesNum'>{(eventDayWeather.feels_like.day).toFixed(0)}</span></div>
+                    <p className='owFeelsLike'>{(eventDayWeather.feels_like.day).toFixed(0)}</p>
+                    <p className='owDescription'>{eventDayWeather.weather[0].description}</p>
                   </div>
-                  <div className="iconBtn">
+                  <div className='iconBtn'>
                     <Link to={'/'}>
-                      <img src={iconHelp} alt="Instructions" />
+                      <img src={iconHelp} alt='Instructions' />
                     </Link>
                     <Link to={'/create-event'}>
-                      <img src={iconEditLoc} alt="Edit event and location" />
+                      <img src={iconEditLoc} alt='Edit event and location' />
                     </Link>
-                    {/* <img src={iconInfo} alt="About" /> */}
+                    {/* <img src={iconInfo} alt='About' /> */}
                     <Link to={'/art'}>
-                      <img src={iconArt} alt="Art" />
+                      <img src={iconArt} alt='Art' />
                     </Link>
                   </div>
                 </div>
               </section>
-              <section id="art">
-                <div className="artImg" style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
+              <section id='art'>
+                <div className='artImg' style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
                 </div>
               </section>
-              {/* <section id="credits">
-                <p className=""></p>
+              {/* <section id='credits'>
+                <p className=''></p>
               </section> */}
             </>
           )
