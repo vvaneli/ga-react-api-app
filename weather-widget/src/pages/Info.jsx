@@ -12,10 +12,7 @@ import iconInfo from '../icons/info_FILL0_wght400_GRAD0_opsz24.svg'
 import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
 
 
-
-
 export default function Info() {
-
 
     const [eventData, setEventData] = useState()
     const [eventDayWeather, setEventDayWeather] = useState()
@@ -37,8 +34,6 @@ export default function Info() {
     //       if (storedEvent) {
     //           event = JSON.parse(storedEvent)
     //       }
-
-
 
 
     useEffect(() => {
@@ -121,7 +116,7 @@ export default function Info() {
                   </div>
                 </section>
                 <section id="art">
-                  <div className="artImg" style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
+                  <div className="artImg" style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
                   </div>
                 </section>
                 {/* <section id="credits">

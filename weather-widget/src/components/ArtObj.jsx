@@ -1,4 +1,4 @@
-export const artObj = {
+export const artObj2 = {
   '01d': [{ id: '2006AV9090', probability: 1 },
   { id: '2018LC7174', probability: 0.01 },],
   '01n': [{ id: '2016JE4624', probability: 1 },],
@@ -25,3 +25,23 @@ export const artObj = {
   '50n': [{ id: '2024NU4133', probability: 1 },],
 }
 
+const artObj = {
+  '01d': [{ id_obj: 'O8158', id_img: '2006AV9090', probability: 1 }, { id_obj: 'O8158', id_img: '2018LC7174', probability: 0.01 }],
+  '01n': [{ id_obj: 'O793969', id_img: '2016JE4624', probability: 1 }],
+  '02d': [{ id_obj: 'O125574', id_img: '2007BN5313', probability: 1 }],
+  '02n': [{ id_obj: 'O81384', id_img: '2006BE7038', probability: 1 }],
+  '03d': [{ id_obj: 'O126211', id_img: '2006AP2032', probability: 1 }],
+  '03n': [{ id_obj: 'O130874', id_img: '2006BH7750', probability: 1 }],
+  '04d': [{ id_obj: 'O82726', id_img: '2006AG3146', probability: 1 }],
+  '04n': [{ id_obj: 'O1173125', id_img: '2023NP5456', probability: 1 }],
+  '09d': [{ id_obj: 'O1037628', id_img: '2016JF7124', probability: 1 }],
+  '09n': [{ id_obj: 'O1036105', id_img: '2011ER6402', probability: 1 }],
+  '10d': [{ id_obj: 'O148036', id_img: '2010EL6814', probability: 1 }, { id_obj: 'O148036', id_img: '2010EL6814', probability: 1 }, { id_obj: 'O69255', id_img: '2013GD6243', probability: 1 }, { id_obj: 'O220831', id_img: '2016JE4926', probability: 1 }],
+  '10n': [{ id_obj: 'O407359', id_img: '2013GG5437', probability: 1 }, { id_obj: 'O407359', id_img: '2013GG5437', probability: 1 }, { id_obj: 'O420629', id_img: '2011EP0060', probability: 1 }],
+  '11d': [{ id_obj: 'O420659', id_img: '2013GE0132', probability: 1 }],
+  '11n': [{ id_obj: 'O1374452', id_img: '2016JP8696', probability: 1 }],
+  '13d': [{ id_obj: 'O738543', id_img: '2016JC1393', probability: 1 }],
+  '13n': [{ id_obj: 'O1070602', id_img: '2023NP8849', probability: 1 }],
+  '50d': [{ id_obj: 'O148034', id_img: '2010EL6952', probability: 1 }],
+  '50n': [{ id_obj: 'O718885', id_img: '2024NU4133', probability: 1 }],
+}
