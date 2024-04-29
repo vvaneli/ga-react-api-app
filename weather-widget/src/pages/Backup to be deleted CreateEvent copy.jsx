@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
-// import 'react-datepicker/dist/react-datepicker.css' // copied to SCSS partial
+// import 'react-datepicker/dist/react-datepicker.css' // Copied to SCSS partial
+
+// Components
+import { dateFormatNewDate } from '../components/DateFormat.jsx'
 
 // SVG icons
 import iconHelp from '../icons/help_FILL0_wght400_GRAD0_opsz24.svg'
@@ -11,20 +14,11 @@ import iconSave from '../icons/check_circle_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function CreateEvent() {
 
-  const navigate = useNavigate()
-
-  // Max selectable date for date picker
-  const today = new Date()
-  const maxDate = today.setDate(today.getDate() + 30) // Advance Forecast = 30 days
-
-  const [styleDropdown, setStyleDropdown] = 'notifications'
-  //Options: ['notifications', 'notificationsEmpty', 'notificationsHide']
-
-  // State variables
-
   const [formData, setFormData] = useState({
     eventName: '',
+    // eventDate: '',
     eventDate: '',
+    eventDateShow: dateFormatNewDate(),
     eventLocation: '',
     lat: '',
     lon: '',
@@ -34,14 +28,20 @@ export default function CreateEvent() {
 
   const [error, setError] = useState('')
 
+  const navigate = useNavigate()
+
+  // For date picker: max selectable date
+  const today = new Date()
+  const maxDate = today.setDate(today.getDate() + 30) // For forecast up to 30 days
+
   // If local storage is not empty, setFormData with the stored data
   useEffect(() => {
     function checkLocalStorage() {
       if (localStorage.events !== undefined) {
-        // setFormData({})
+        setFormData({})
         setFormData(JSON.parse(localStorage.getItem('events')))
-        console.log(JSON.parse(localStorage.getItem('events')).eventName)
-        console.log(formData.eventName)
+        console.log('1 formData: ' + formData)
+        console.log('localStorage.events is not null')
       }
     }
     checkLocalStorage()
@@ -54,12 +54,11 @@ export default function CreateEvent() {
     navigate('/info')
   }
 
-
   function handleLocation(option) {
     setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
   }
 
-
+  // Location options
   async function handleSelect(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setTimeout(async () => {
@@ -70,6 +69,32 @@ export default function CreateEvent() {
         setError(error.message)
       }
     }, 10)
+  }
+
+  const [startDate, setStartDate] = useState();  
+
+//   type ValuePiece = Date | null;
+
+// type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+
+
+const [value, setValue] = useState(new Date());
+
+  function updateDatePicker(data) {
+    // date => setFormData({ ...formData, eventDate: date.getTime() })
+(date) => setValue(date)
+    console.log(setValue)
+    console.log(value)
+    // setFormData({ ...formData, [e.target.name]: e.target.value })
+    // setFormData.eventDate = new Date().getDate
+    // setFormData.eventDate = new Date()
+    // (setFormData.eventDate)
+    // console.log(formData.eventDate)
+  }
+
+  function datePickerAlert() {
+    console.log('Invalid date')
   }
 
   function handleChange(e) {
@@ -88,7 +113,12 @@ export default function CreateEvent() {
     localStorage.clear()
   }
 
-  // const [datePicked, setDatePicked] = useState(new Date());
+  // const [notificationStyle, setNotificationStyle] = useState('notifications')
+  const [notificationStyle, setNotificationStyle] = useState('notificationsEmpty')
+  // const [eventDateSelected, setEventDateSelected] = useState()
+
+
+
   return (
     <section className='form-page'>
       <h1>Watch the weather for an upcoming event</h1>
@@ -103,24 +133,34 @@ export default function CreateEvent() {
           placeholder="What's the occasion?"
           maxLength='25'
           required
+          selected={formData.eventName}
           value={formData.eventName}
           onChange={handleChange}
         />
         <br />
         <label htmlFor='eventDate'>Date</label>
         <DatePicker
-          selected={formData.eventDate}
+        input type='date'
+          selected={''}
+          // selected={formData.eventDate}
           name='eventDate'
           id='eventDate'
           value={formData.eventDate}
-          dateFormat='EEEE dd MMMM'
+          // dateFormat='EEEE dd MMMM'
           minDate={new Date()}
           maxDate={maxDate}
           placeholderText='Up to 30 days in advance'
           required
           nativeInputAriaLabel
-          // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
-          onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
+          // onChange={(date) => setFormData(date)} 
+          // onChange={date => setFormData.eventDate(date.getTime())}
+          onChange={updateDatePicker}
+          onInvalidChange = {datePickerAlert}
+        // onChange={setFormData = (setFormData.eventDate)}
+        // selected={setFormData = (setFormData.eventDate)}
+        // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
+        // onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
+        // onChange={date => setFormData(setFormData.eventDate = date.getTime() )}
         />
         {/* <br /> */}
         <label htmlFor='eventLocation'>City</label>
@@ -135,31 +175,31 @@ export default function CreateEvent() {
         // onKeyDown={handleSelect}
         />
         <br />
-        <div className='notifications'>
-        {/* <div className={styleDropdown}> */}
-          {/* if location comes back with more than one result have drop down menu */}
+        {/* <div className='notifications'> */}
+        {/* if location comes back with more than one result have drop down menu */}
+        <div className={notificationStyle}>
           {options.length > 1 ?
-          (
-            // setStyleDropdown('notifications'),
             options.map(option => {
               const { lat, lon, country, state, name } = option
-              console.log(lat, lon, name, state)
+              console.log(lat, lon)
               return (
                 <div key={`${lat}-${lon}`} onClick={() => handleLocation(option)} className='cityOption'>{name}
-                  {/* Only show state and/or country if those fields have contents from the API */}
+                  {/* Only show those fields if state and/or country fields have contents from the API */}
                   {(!state) ? '' : <>, {state}</>}
                   {(!country) ? '' : <>, {country}</>}
                 </div>
               )
             })
-          )
             :
+            // {setNotificationStyle = 'notifications'}
             error ?
+              // <div className='notificationError'>
               // <p className='errorMsg'>{error}</p>
-              <p className='errorMsg'>We can&#39;t find a city with that name.</p>
+              <p className='errorMsg'>Chills! We can&#39;t find a place with that name.</p>
+              // </div>
               :
               ''
-              // <p className='errorMsg'>No other options available</p>
+            // setNotificationStyle('notifications')
           }
         </div>
 
@@ -168,7 +208,7 @@ export default function CreateEvent() {
             <img src={iconHelp} alt='Instructions' />
           </Link>
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
-          <button type='submit' ><img src={iconSave} alt='Save' /></button>
+          <button type='submit'><img src={iconSave} alt='Save' /></button>
         </div>
       </form>
     </section>

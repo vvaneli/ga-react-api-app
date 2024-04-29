@@ -6,13 +6,13 @@
 $widgetWidth: 349px;
 $widgetHeight: 220px;
 $colourText1: rgb(63, 55, 63);
-$colourText2: rgba(0,0,0,0.9);
+$colourText2: rgba(0, 0, 0, 0.9);
 $colorTextError: rgb(181, 12, 12);
 $colourSticker: rgb(218, 218, 211);
 $colourSticker2: rebeccapurple;
 $colourSticker3: sandybrown;
 $colourWidgetBack: rgb(152, 131, 107);
-$colourWidgetShadow: rgba(0,0,0,0.15);
+$colourWidgetShadow: rgba(0, 0, 0, 0.15);
 // $colourWidgetBack: rgb(145,116,84);
 
 * {
@@ -44,7 +44,8 @@ $colourWidgetShadow: rgba(0,0,0,0.15);
   height: $widgetHeight;
 }
 
-.iconBtn, .formBtn {
+.iconBtn,
+.formBtn {
   justify-content: space-evenly;
 }
 
@@ -92,7 +93,8 @@ section {
   // // height: 300px;
 }
 
-.iconBtn img, .formBtn img {
+.iconBtn img,
+.formBtn img {
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -225,14 +227,14 @@ section#art {
 }
 
 .form-page button {
-background: none;
-border: 0;
-margin-bottom: 8px;
+  background: none;
+  border: 0;
+  margin-bottom: 8px;
 }
 
 .form {
   margin: 0 auto;
-  width:  calc($widgetWidth - 40px);
+  width: calc($widgetWidth - 40px);
 }
 
 .formBtn {
@@ -240,7 +242,8 @@ margin-bottom: 8px;
   margin-top: 35px; // hack
 }
 
-input, label {
+input,
+label {
   // display: block;
   display: inline-block;
   // margin: 3px 0;
@@ -257,27 +260,56 @@ input {
   width: calc($widgetWidth - 100px);
 }
 
-.errorMsg, .cityOption {
-  margin-left: 45px;
-}
-
-.notifications {
-  min-width: calc($widgetWidth - 40px);
-position: absolute;
-background: $colourSticker;
-margin-top: calc(($widgetHeight / 2) - 30px);
-padding-right: 40px;
-padding-left: 10px;
-box-sizing: border-box;
+.errorMsg,
+.cityOption {
+  // margin-left: 45px;
+  margin-left: 5px;
 }
 
 .cityOption {
   border-bottom: 1px dotted $colourWidgetBack;
-  padding: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.errorMsg:last-child,
+.cityOption:last-child {
+  border-bottom: 0;
+  padding-bottom: 16px;
+}
+
+.notifications, .notificationsEmpty {
+  min-width: calc($widgetWidth - 40px);
+  position: absolute;
+  background: $colourSticker;
+  margin-top: calc(($widgetHeight / 2) - 30px);
+  padding-right: 15px;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 .notifications::before {
   content: 'PICK A CITY:';
+}
+
+.notificationsHide {
+  display: none;
+}
+
+.notificationError {
+  height: 0;
+  padding-left: 0;
+  margin-top: -3px;
+}
+
+.notificationError p {
+  background-color: $colorTextError;
+  color: white;
+  padding: 1px 0 0 0;
+  margin: 0;
+  text-align: center;
+  height: 12px;
+letter-spacing: 0.09em;
 }
 
 .errorMsg {
