@@ -25,7 +25,6 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 
 #root,
 #locationPicker,
-.locationListError,
 .scrollHeader,
 .iconBtn,
 .form,
@@ -434,12 +433,22 @@ input {
 }
 
 .title,
+.titleDetail,
 .artist {
   line-height: 1em;
 }
 
 .title {
   text-transform: uppercase;
+}
+
+.titleDetail {
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+}
+
+.titleDetail {
+  font-size: 18px;
 }
 
 .artist {
@@ -469,9 +478,17 @@ hr {
 
 .smallprint {
   font-size: 13px;
-  opacity: 50%;
-  font-style: italic;
+
   padding: 0.5em 0.5em 1.5em 0.5em;
   line-height: 1em;
   letter-spacing: 0.05em;
+}
+
+.attribution {
+  opacity: 50%;
+  font-style: italic;
+}
+
+.airQNotice {
+  opacity: 70%;
 }

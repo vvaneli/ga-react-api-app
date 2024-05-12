@@ -3,12 +3,13 @@ import { useNavigate, Link } from "react-router-dom"
 import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
 
+import { NoArt } from '../components/NoArt.jsx'
+
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconArt from '../icons/wall_art_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import artBack from '../icons/partly_cloudy_day_24dp_FILL0_wght400_GRAD0_opsz24.svg'
-// import back from '../images/frame-back.jpg' // background image
 
 export default function Art() {
 
@@ -23,13 +24,10 @@ export default function Art() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Check if there is data in local storage, if not then go to homepage
-    function checkLocalStorage() {
-      if ((!localStorage.getItem('weather')) || (!localStorage.getItem('events'))) {
-        navigate('/')
-      }
+    if (NoArt() === true){
+    // if (NoArt === true ){
+      navigate('/')
     }
-    checkLocalStorage()
   }, [])
 
   useEffect(() => {
@@ -55,15 +53,16 @@ export default function Art() {
   return (
     <section id="credits">
       <div className='creditInfo'>
-          <h1 className='title'>{title}</h1>
-          <p className='artist'>{artist}</p>
-          <p className='date'>{date}</p>
-        </div>
-        <hr className='line'/>
-        <aside className='smallprint'>
-          <p><small>{error && <p><smallll>{error}</smallll></p>}</small></p>
-          <p><small>Image: {copyright}. Weather: Open Weather</small></p>
-        </aside>
+        <h1 className='title'>{title} <span className='titleDetail'>(detail)</span></h1>
+        <p className='artist'>{artist}</p>
+        <p className='date'>{date}</p>
+      </div>
+      <hr className='line' />
+      <aside className='smallprint'>
+        <p><small>{error && <p><smallll>{error}</smallll></p>}</small></p>
+        <p><small className='airQNotice'>When air pollution level is higher (from &lsquo;fair&rsquo; to &lsquo;very poor&rsquo;), art looks darker.</small></p>
+        <p><small className='attribution'>Image: {copyright}. Weather: Open Weather</small></p>
+      </aside>
       <div className='iconBtn'>
         <Link to={'/home'}>
           <img src={iconHome} alt='Homepage' />

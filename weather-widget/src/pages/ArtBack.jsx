@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { dayOfWeek, month } from '../components/DateFormat.jsx'
 
+import { NoArt } from '../components/NoArt.jsx'
+
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
@@ -22,37 +24,33 @@ export default function ArtBack() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    function checkLocalStorage() {
-      // If local storage does not have the data, then go to homepage
-      if ((!localStorage.getItem('events')) && (!localStorage.getItem('weather'))  && (!localStorage.getItem('airQuality'))) { // Not localStorage.events, because it's not an object
-        navigate('/')
-      }
-      // Otherwise get from local storage
-      setEventName((JSON.parse(localStorage.getItem('events'))).eventName)
-      setEventDate((JSON.parse(localStorage.getItem('events'))).eventDate)
-      setEventLocation((JSON.parse(localStorage.getItem('events'))).eventLocation)
-      setTemperature(((JSON.parse(localStorage.getItem('weather'))).temperatureC))
-      setDescription((JSON.parse(localStorage.getItem('weather'))).description)
-      setAirQ(JSON.parse(localStorage.getItem('airQuality')))
+    if (NoArt() === true){
+    // if (NoArt === true ){
+      navigate('/')
     }
-    checkLocalStorage()
+    setEventName((JSON.parse(localStorage.getItem('events'))).eventName)
+    setEventDate((JSON.parse(localStorage.getItem('events'))).eventDate)
+    setEventLocation((JSON.parse(localStorage.getItem('events'))).eventLocation)
+    setTemperature(((JSON.parse(localStorage.getItem('weather'))).temperatureC))
+    setDescription((JSON.parse(localStorage.getItem('weather'))).description)
+    setAirQ(JSON.parse(localStorage.getItem('airQuality')))
   }, [])
 
-  function airQText(){
+  function airQText() {
     if (airQ <= 1) {
-      return('Good')
+      return ('1 Good')
     }
     if (airQ === 2) {
-      return('Fair')
+      return ('2 Fair')
     }
     if (airQ === 3) {
-      return('Moderate')
+      return ('3 Moderate')
     }
     if (airQ === 4) {
-      return('Poor')
+      return ('4 Poor')
     }
     if (airQ >= 5) {
-      return('Very poor')
+      return ('5 Very poor')
     }
   }
 

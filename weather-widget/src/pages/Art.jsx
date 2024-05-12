@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { artObj } from '../components/ArtObj.jsx'
 
+import { oldArt } from '../components/NoArt.jsx'
+
 export default function Art() {
 
   // State variables
@@ -15,15 +17,13 @@ export default function Art() {
   const widgetWidth = 349 // Widget size
   const imgDimension = (widgetWidth * 1.5)  // Image size, max 2500px inc. margins
 
-  // If local storage is empty, go to homepage
   const navigate = useNavigate()
+  
+  // If local storage is empty, go to homepage
   useEffect(() => {
-    function checkLocalStorage() {
-      if (!localStorage.getItem('events')) { // Not localStorage.events, because it's not an object
-        navigate('/')
-      }
+    if (oldArt() === true){
+      navigate('/')
     }
-    checkLocalStorage()
   }, [])
 
   // Get weather forecast

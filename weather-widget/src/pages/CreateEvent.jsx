@@ -36,19 +36,7 @@ export default function CreateEvent() {
     checkLocalStorage()
   }, [])
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    // save data to localStorage
-    localStorage.setItem('events', JSON.stringify({ ...formData }))
-    // navigate('/art')
-    navigate('/create-event-location')
-  }
-
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  // Reset the form and clear localStorage
+  // Reset button: clear localStorage
   function handleReset() {
     setFormData({
       eventName: '',
@@ -60,6 +48,17 @@ export default function CreateEvent() {
     localStorage.removeItem('events')
     localStorage.removeItem('weather')
     localStorage.removeItem('airQuality')
+  }
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    // save data to localStorage
+    localStorage.setItem('events', JSON.stringify({ ...formData }))
+    navigate('/event-location')
   }
 
   return (

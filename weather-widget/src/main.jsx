@@ -7,8 +7,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './styles/main.scss'
 
 // Page Components
-import Welcome from './pages/Welcome.jsx'
-import Home from './pages/Home.jsx'
+import Welcome from './pages/Welcome.jsx' // Landing page
+import Home from './pages/Home.jsx' // Home page
 import CreateEvent from './pages/CreateEvent.jsx'
 import EventLocation from './pages/EventLocation.jsx'
 import Art from './pages/Art.jsx'
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <CreateEvent />
       },
       {
-        path: 'create-event-location',
+        path: 'event-location',
         element: <EventLocation />
       },
       {

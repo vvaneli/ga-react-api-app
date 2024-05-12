@@ -9,17 +9,17 @@ export default function EventLocation() {
 
   const [options, setOptions] = useState([])
   const [formData, setFormData] = useState({})
-  // const [eventLocation, setEventLocation] = useState('')
   const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
   useEffect(() => {
     function checkLocalStorage() {
-      // If local storage is empty, go to create events
+      // If no 'events' in local storage, go to create events
       if (!localStorage.getItem('events')) {
         navigate('/create-events')
       }
+      // Otherwise get data from local storage
       setFormData((JSON.parse(localStorage.getItem('events'))))
     }
     checkLocalStorage()
@@ -29,6 +29,7 @@ export default function EventLocation() {
   useEffect(() => {
     async function getLatLon() {
       try {
+        // setFormData((JSON.parse(localStorage.getItem('events'))))
         // Get location from local storage
         const eventLocation = ((JSON.parse(localStorage.getItem('events'))).eventLocation)
         const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${eventLocation}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
