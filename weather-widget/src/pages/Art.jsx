@@ -1,28 +1,80 @@
-import { Link } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 import { artObj } from '../components/ArtObj.jsx'
-// import { eventDayWeather } from './Info.jsx'
-// import Info from './Info.jsx'
-// import axios from 'axios'
-
-
 
 export default function Art() {
 
-  // Widget size
-  // const widgetWidth = 349
+  // State variables
+  const [eventDayWeather, setEventDayWeather] = useState()
+  const [error, setError] = useState('')
 
-  // Image size
-  // const imgDimension = (widgetWidth * 1.5)  // max 2500px inc. margins
+  // Static variables
+  const widgetWidth = 349 // Widget size
+  const imgDimension = (widgetWidth * 1.5)  // Image size, max 2500px inc. margins
 
-    // State variables
-    // const [eventDayWeather, setEventDayWeather] = useState()
+  // If local storage is empty, go to homepage
+  const navigate = useNavigate()
+  useEffect(() => {
+    function checkLocalStorage() {
+      if (!localStorage.getItem('events')) { // Not localStorage.events, because it's not an object
+        navigate('/')
+      }
+    }
+    checkLocalStorage()
+  }, [])
 
-  // return (
-  //   <Link to={'/info'}>
-  //     <section id="art">
-  //       {/* <div className="artImg" style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}> */}
-  //       {/* </div> */}
-  //     </section>
-  //   </Link>
-  // )
+  // Get weather forecast
+  useEffect(() => {
+    async function getWeatherForecast() {
+      try {
+        // Get from local storage
+        const lat = (JSON.parse(localStorage.getItem('events'))).lat
+        const lon = (JSON.parse(localStorage.getItem('events'))).lon
+        // For 30 day forecast, valid cnt range is 1 to 30
+        const cnt = (Math.round((JSON.parse(localStorage.getItem('events')).eventDate - (new Date()).getTime()) / (1000 * 3600 * 24)))
+        const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+        // console.log(data)
+        // setEventCity(data.city.name)
+        setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
+        // console.log(eventCity.name)  // Output: London
+        // console.log(eventCity.country)  // Output: GB
+        // console.log(eventDayWeather.clouds)  // Output: 18 (cloudiness %)
+        // console.log('dt: ' + eventDayWeather.dt + ', ' + eventDayWeather.dt.toUTCString())
+
+        // save weather data to localStorage
+        localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+    getWeatherForecast()
+  }, [])
+
+  return (
+    <>
+      {eventDayWeather ?
+        (
+          <>
+            <section id='art'>
+              <Link to={'/art-back'}>
+                <div className='artImg' style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
+                </div>
+              </Link>
+            </section>
+          </>
+        )
+        :
+        (
+          <div>
+            <p>Waiting for the weather</p>
+            <hr />
+            <aside className='smallprint'>
+              <p><small>{error && <p><smallll>{error}</smallll></p>}</small></p>
+            </aside>
+          </div>
+        )
+      }
+    </>
+  )
 }

@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker'
 // import 'react-datepicker/dist/react-datepicker.css' // copied to SCSS partial
 
 // SVG icons
-import iconHelp from '../icons/help_FILL0_wght400_GRAD0_opsz24.svg'
+import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconReset from '../icons/delete_FILL0_wght400_GRAD0_opsz24.svg'
 import iconSave from '../icons/check_circle_FILL0_wght400_GRAD0_opsz24.svg'
 
@@ -17,11 +17,10 @@ export default function CreateEvent() {
   const today = new Date()
   const maxDate = today.setDate(today.getDate() + 30) // Advance Forecast = 30 days
 
-  const [styleDropdown, setStyleDropdown] = 'notifications'
+  // const [styleDropdown, setStyleDropdown] = 'notifications'
   //Options: ['notifications', 'notificationsEmpty', 'notificationsHide']
 
   // State variables
-
   const [formData, setFormData] = useState({
     eventName: '',
     eventDate: '',
@@ -37,11 +36,8 @@ export default function CreateEvent() {
   // If local storage is not empty, setFormData with the stored data
   useEffect(() => {
     function checkLocalStorage() {
-      if (localStorage.events !== undefined) {
-        // setFormData({})
+      if (localStorage.getItem('events')) {
         setFormData(JSON.parse(localStorage.getItem('events')))
-        console.log(JSON.parse(localStorage.getItem('events')).eventName)
-        console.log(formData.eventName)
       }
     }
     checkLocalStorage()
@@ -51,9 +47,8 @@ export default function CreateEvent() {
     e.preventDefault()
     // save data to localStorage
     localStorage.setItem('events', JSON.stringify({ ...formData }))
-    navigate('/info')
+    navigate('/art')
   }
-
 
   function handleLocation(option) {
     setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
@@ -62,14 +57,12 @@ export default function CreateEvent() {
 
   async function handleSelect(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-    setTimeout(async () => {
       try {
-        const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${formData.eventLocation}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
+        const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
         setOptions(data)
       } catch (error) {
         setError(error.message)
       }
-    }, 10)
   }
 
   function handleChange(e) {
@@ -122,7 +115,6 @@ export default function CreateEvent() {
           // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
           onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
         />
-        {/* <br /> */}
         <label htmlFor='eventLocation'>City</label>
         <input
           type='text'
@@ -138,7 +130,7 @@ export default function CreateEvent() {
         <div className='notifications'>
         {/* <div className={styleDropdown}> */}
           {/* if location comes back with more than one result have drop down menu */}
-          {options.length > 1 ?
+          {options.length > 0 ?
           (
             // setStyleDropdown('notifications'),
             options.map(option => {
@@ -165,7 +157,7 @@ export default function CreateEvent() {
 
         <div className='formBtn'>
           <Link to={'/'}>
-            <img src={iconHelp} alt='Instructions' />
+            <img src={iconHome} alt='Homepage' />
           </Link>
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
           <button type='submit' ><img src={iconSave} alt='Save' /></button>

@@ -10,7 +10,8 @@ import './styles/main.scss'
 import Welcome from './pages/Welcome.jsx'
 import CreateEvent from './pages/CreateEvent.jsx'
 import Art from './pages/Art.jsx'
-import Info from './pages/Info.jsx'
+import ArtBack from './pages/ArtBack.jsx'
+import Credits from './pages/Credits.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
         element: <Art />
       },
       {
-        path: 'info',
-        element: <Info />
+        path: 'art-back',
+        element: <ArtBack />
+      },
+      {
+        path: 'credits',
+        element: <Credits />
       }
     ]
   }

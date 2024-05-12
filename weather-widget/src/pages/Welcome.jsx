@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom"
 
+import coverImage from '../images/SK-A-3259_crop_698w440h.jpg' // cover image
+import logo from '../logo/FeelsLike_logo_349w220h.svg'
+
 export default function Welcome() {
   return (
     <>
-      <section>
-        <h1>Welcome to weather widget!</h1>
-        {/* <h2>How to appreciate the weather more through art?</h2> */}
-        <ol>
-          <li>Enter your event name.</li>
-          <li>Enter your event date.</li>
-          <li>Enter your event location, select the right option if required.</li>
-          <li>Click save event and watch the magic happen.</li>
-        </ol>
-        <Link to={'/create-event'}>
-          <button className='add-event'>Start</button>
-        </Link>
-      </section>
+      <Link to={'/create-event'}>
+        <section className='home' style={{ backgroundImage: `url(${logo}), url(${coverImage})` }}>
+        </section>
+      </Link>
     </>
   )
 }
