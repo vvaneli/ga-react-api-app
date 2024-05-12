@@ -17,9 +17,6 @@ export default function CreateEvent() {
   const today = new Date()
   const maxDate = today.setDate(today.getDate() + 30) // Advance Forecast = 30 days
 
-  // const [styleDropdown, setStyleDropdown] = 'notifications'
-  //Options: ['notifications', 'notificationsEmpty', 'notificationsHide']
-
   // State variables
   const [formData, setFormData] = useState({
     eventName: '',
@@ -47,21 +44,6 @@ export default function CreateEvent() {
     navigate('/create-event-location')
   }
 
-  // function handleLocation(option) {
-  //   setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
-  // }
-
-// Get lat lon
-  // async function handleSelect(e) {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value })
-  //     try {
-  //       const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
-  //       setOptions(data)
-  //     } catch (error) {
-  //       setError(error.message)
-  //     }
-  // }
-
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -77,12 +59,12 @@ export default function CreateEvent() {
     })
     localStorage.removeItem('events')
     localStorage.removeItem('weather')
+    localStorage.removeItem('airQuality')
   }
 
   return (
     <section className='form-page'>
       <h1 className='formH1'>Watch the weather for an upcoming event</h1>
-      {/* <form onSubmit={handleSubmit} onKeyDown={(e) => e.preventDefault()}> */}
       <form className='form' onSubmit={handleSubmit}>
         <label htmlFor='eventName'>Event </label>
         <input
@@ -116,7 +98,7 @@ export default function CreateEvent() {
           type='text'
           name='eventLocation'
           id='eventLocation'
-          placeholder='Insert city name and press ENTER'
+          placeholder='Event location (nearest city name)'
           required
           value={formData.eventLocation}
           onChange={handleChange}

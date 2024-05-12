@@ -17,6 +17,7 @@ export default function ArtBack() {
   const [eventLocation, setEventLocation] = useState('')
   const [temperature, setTemperature] = useState(Number())
   const [description, setDescription] = useState('')
+  const [airQ, setAirQ] = useState(Number())
 
   const navigate = useNavigate()
 
@@ -32,6 +33,7 @@ export default function ArtBack() {
       setEventLocation((JSON.parse(localStorage.getItem('events'))).eventLocation)
       setTemperature(((JSON.parse(localStorage.getItem('weather'))).feels_like.day))
       setDescription((JSON.parse(localStorage.getItem('weather'))).weather[0].description)
+      setAirQ(JSON.parse(localStorage.getItem('airQuality')))
     }
     checkLocalStorage()
   }, [])
@@ -45,7 +47,7 @@ export default function ArtBack() {
       </div>
       <div id='air'>
         <img src={iconLungs} alt='Air quality' />
-        <span>5</span>
+        <span>{airQ}</span>
       </div>
       <div className='artBack'>
         <div className='stampForecast'>

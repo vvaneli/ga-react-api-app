@@ -47,6 +47,7 @@ export default function Art() {
 
         // save weather data to localStorage
         localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+        localStorage.setItem('airQuality', (air.data.list[0].main.aqi))
       } catch (error) {
         setError(error.message)
       }
@@ -61,7 +62,6 @@ export default function Art() {
           <>
             <section id='art'>
               <Link to={'/art-back'}>
-                {/* <div className='airQuality'></div> */}
                 <div className='artImg' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.${airQ}), rgba(0, 0, 0, 0.${airQ})), url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
                 </div>
               </Link>
