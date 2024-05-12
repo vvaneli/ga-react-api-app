@@ -1,4 +1,5 @@
-// @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Homemade+Apple&family=Saira+Extra+Condensed:wght@600&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap');
+// font-family: "Send Flowers", cursive;
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Homemade+Apple&family=Rozha+One&family=Saira+Extra+Condensed:wght@600&display=swap');
 
 @import './partials/react-datepicker';
@@ -21,7 +22,11 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 }
 
 /* FLEX C */
+
 #root,
+#locationPicker,
+.locationListError,
+.scrollHeader,
 .iconBtn,
 .formBtn {
   display: flex;
@@ -33,6 +38,23 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
   align-items: center;
 }
 
+#locationPicker {
+  flex-direction: column;
+}
+
+.locationListError {
+  align-content: center;
+}
+
+#locationPicker{
+  justify-content: flex-end;
+}
+
+.scrollHeader{
+  justify-content: space-between;
+}
+
+#apiError,
 #credits,
 .artBack,
 .stampForecast,
@@ -42,12 +64,14 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
   height: $widgetHeight;
 }
 
+#apiError,
 .iconBtn,
 .formBtn {
   justify-content: space-evenly;
 }
 
 /* FLEX I */
+
 .stampForecast {
   align-self: flex-end;
   flex-grow: 1;
@@ -90,7 +114,6 @@ section {
 /* ART BACK */
 
 #info {
-  // display: none;
   color: $colourText2;
 }
 
@@ -98,7 +121,6 @@ section {
   rotate: 10deg;
   padding-bottom: 6px;
   vertical-align: bottom;
-  // // height: 300px;
 }
 
 .iconBtn img,
@@ -123,12 +145,12 @@ section {
 
 .owFeelsLike,
 .owDescription {
-  font-size: 12px;
+  font-size: 16px;
   display: block;
 }
 
 .owFeelsLike {
-  opacity: 75%;
+  opacity: 80%;
 }
 
 .owFeelsLike::before {
@@ -145,6 +167,7 @@ section {
 }
 
 .circle {
+  margin: 0 auto;
   margin-top: auto;
   margin-bottom: 5px;
   width: 80px;
@@ -207,7 +230,6 @@ section {
 /* ART */
 
 section#art {
-  // display: none;
   background-color: none;
 }
 
@@ -223,7 +245,7 @@ section#art {
   padding: 10px;
 }
 
-.form-page h1 {
+.formH1 {
   text-align: center;
   font-size: 22px;
 }
@@ -262,10 +284,39 @@ input {
   width: calc($widgetWidth - 100px);
 }
 
-.errorMsg,
-.cityOption {
-  // margin-left: 45px;
-  margin-left: 5px;
+/* LOCATION PICKER */
+
+#locationPicker {
+  background-color: $colourSticker;
+  border: 1px solid $colourWidgetShadow;
+}
+
+.scrollHeading{
+  text-transform: uppercase;
+  margin-top: 2pw;
+  margin-left: 15px;
+  font-size: 19px;
+}
+
+.close {
+  width: 28px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.locationList{
+  margin: 0 auto;
+  // margin-right: 15px;
+  width: calc($widgetWidth - 32px);
+  height: calc($widgetHeight - 40px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: $colourText1;
+}
+
+.locationListError {
+  height: calc($widgetHeight - 40px);
+  text-align: center;  
 }
 
 .cityOption {
@@ -291,14 +342,6 @@ input {
   box-sizing: border-box;
 }
 
-.notifications::before {
-  content: 'PICK A CITY:';
-}
-
-.notificationsHide {
-  display: none;
-}
-
 .notificationError {
   height: 0;
   padding-left: 0;
@@ -315,8 +358,25 @@ input {
   letter-spacing: 0.09em;
 }
 
+/* ERRORS */
+
 .errorMsg {
   color: $colorTextError;
+}
+
+#apiError {
+  background-color: $colourSticker;
+  text-align: center;
+  border: 1px solid $colourWidgetShadow;
+}
+
+.errorEescapeBtn {
+  margin-top: 1em;
+  padding: 0.1em 1.5em;
+  background-color: $colorTextError;
+  display: inline-block;
+  color: $colourSticker;
+  cursor: pointer;
 }
 
 /* CREDITS */
@@ -328,7 +388,8 @@ input {
   // background-color: $colourSticker;
 }
 
-.title, .artist {
+.title,
+.artist {
   line-height: 1em;
 }
 
@@ -337,7 +398,8 @@ input {
 }
 
 .artist {
-padding: 0.5em 0 0.4em 0;
+  font-size: 18px;
+  padding: 0.5em 0 0.4em 0;
 }
 
 .creditInfo {

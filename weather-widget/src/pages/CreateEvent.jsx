@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import DatePicker from 'react-datepicker'
 // import 'react-datepicker/dist/react-datepicker.css' // copied to SCSS partial
 
@@ -29,11 +29,7 @@ export default function CreateEvent() {
     lon: '',
   })
 
-  const [options, setOptions] = useState([])
-
-  const [error, setError] = useState('')
-
-  // If local storage is not empty, setFormData with the stored data
+  // If local storage is not empty, populate the form with the stored data
   useEffect(() => {
     function checkLocalStorage() {
       if (localStorage.getItem('events')) {
@@ -47,23 +43,24 @@ export default function CreateEvent() {
     e.preventDefault()
     // save data to localStorage
     localStorage.setItem('events', JSON.stringify({ ...formData }))
-    navigate('/art')
+    // navigate('/art')
+    navigate('/create-event-location')
   }
 
-  function handleLocation(option) {
-    setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
-  }
+  // function handleLocation(option) {
+  //   setFormData({ ...formData, lat: option.lat, lon: option.lon, eventLocation: option.name })
+  // }
 
-
-  async function handleSelect(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-      try {
-        const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
-        setOptions(data)
-      } catch (error) {
-        setError(error.message)
-      }
-  }
+// Get lat lon
+  // async function handleSelect(e) {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value })
+  //     try {
+  //       const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${e.target.value}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
+  //       setOptions(data)
+  //     } catch (error) {
+  //       setError(error.message)
+  //     }
+  // }
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -78,16 +75,15 @@ export default function CreateEvent() {
       lat: '',
       lon: '',
     })
-    localStorage.clear()
+    localStorage.removeItem('events')
+    localStorage.removeItem('weather')
   }
 
-  // const [datePicked, setDatePicked] = useState(new Date());
   return (
     <section className='form-page'>
-      <h1>Watch the weather for an upcoming event</h1>
+      <h1 className='formH1'>Watch the weather for an upcoming event</h1>
       {/* <form onSubmit={handleSubmit} onKeyDown={(e) => e.preventDefault()}> */}
       <form className='form' onSubmit={handleSubmit}>
-
         <label htmlFor='eventName'>Event </label>
         <input
           type='text'
@@ -123,41 +119,11 @@ export default function CreateEvent() {
           placeholder='Insert city name and press ENTER'
           required
           value={formData.eventLocation}
-          onChange={handleSelect}
-        // onKeyDown={handleSelect}
+          onChange={handleChange}
         />
-        <br />
-        <div className='notifications'>
-        {/* <div className={styleDropdown}> */}
-          {/* if location comes back with more than one result have drop down menu */}
-          {options.length > 0 ?
-          (
-            // setStyleDropdown('notifications'),
-            options.map(option => {
-              const { lat, lon, country, state, name } = option
-              console.log(lat, lon, name, state)
-              return (
-                <div key={`${lat}-${lon}`} onClick={() => handleLocation(option)} className='cityOption'>{name}
-                  {/* Only show state and/or country if those fields have contents from the API */}
-                  {(!state) ? '' : <>, {state}</>}
-                  {(!country) ? '' : <>, {country}</>}
-                </div>
-              )
-            })
-          )
-            :
-            error ?
-              // <p className='errorMsg'>{error}</p>
-              <p className='errorMsg'>We can&#39;t find a city with that name.</p>
-              :
-              ''
-              // <p className='errorMsg'>No other options available</p>
-          }
-        </div>
-
         <div className='formBtn'>
           <Link to={'/'}>
-            <img src={iconHome} alt='Homepage' />
+            <img src={iconHome} alt='Homepage' type='submit'/>
           </Link>
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
           <button type='submit' ><img src={iconSave} alt='Save' /></button>

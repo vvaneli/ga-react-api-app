@@ -30,7 +30,7 @@ export default function ArtBack() {
       setEventDate((JSON.parse(localStorage.getItem('events'))).eventDate)
       setEventLocation((JSON.parse(localStorage.getItem('events'))).eventLocation)
       setTemperature(((JSON.parse(localStorage.getItem('weather'))).feels_like.day))
-      setDescription((JSON.parse(localStorage.getItem('weather'))).weather.description)
+      setDescription((JSON.parse(localStorage.getItem('weather'))).weather[0].description)
     }
     checkLocalStorage()
   }, [])

@@ -9,6 +9,7 @@ import './styles/main.scss'
 // Page Components
 import Welcome from './pages/Welcome.jsx'
 import CreateEvent from './pages/CreateEvent.jsx'
+import EventLocation from './pages/EventLocation.jsx'
 import Art from './pages/Art.jsx'
 import ArtBack from './pages/ArtBack.jsx'
 import Credits from './pages/Credits.jsx'
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'create-event',
         element: <CreateEvent />
+      },
+      {
+        path: 'create-event-location',
+        element: <EventLocation />
       },
       {
         path: 'art',
