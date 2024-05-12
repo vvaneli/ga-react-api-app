@@ -65,47 +65,50 @@ export default function CreateEvent() {
   return (
     <section className='form-page'>
       <h1 className='formH1'>Watch the weather for an upcoming event</h1>
+      <h2 className='formH2'>Art conveys how it feels on the day</h2>
       <form className='form' onSubmit={handleSubmit}>
-        <label htmlFor='eventName'>Event </label>
-        <input
-          type='text'
-          name='eventName'
-          id='eventName'
-          placeholder="What's the occasion?"
-          maxLength='25'
-          required
-          value={formData.eventName}
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor='eventDate'>Date</label>
-        <DatePicker
-          selected={formData.eventDate}
-          name='eventDate'
-          id='eventDate'
-          value={formData.eventDate}
-          dateFormat='EEEE dd MMMM'
-          minDate={new Date()}
-          maxDate={maxDate}
-          placeholderText='Up to 30 days in advance'
-          required
-          nativeInputAriaLabel
-          // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
-          onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
-        />
-        <label htmlFor='eventLocation'>City</label>
-        <input
-          type='text'
-          name='eventLocation'
-          id='eventLocation'
-          placeholder='Event location (nearest city name)'
-          required
-          value={formData.eventLocation}
-          onChange={handleChange}
-        />
+        <div className='inputFields'>
+          <label htmlFor='eventName'>Event </label>
+          <input
+            type='text'
+            name='eventName'
+            id='eventName'
+            placeholder="What's the occasion?"
+            maxLength='25'
+            required
+            value={formData.eventName}
+            onChange={handleChange}
+          />
+          <br />
+          <label htmlFor='eventDate'>Date</label>
+          <DatePicker
+            selected={formData.eventDate}
+            name='eventDate'
+            id='eventDate'
+            value={formData.eventDate}
+            dateFormat='EEEE dd MMMM'
+            minDate={new Date()}
+            maxDate={maxDate}
+            placeholderText='Up to 30 days in advance'
+            required
+            nativeInputAriaLabel
+            // onChange={date => setFormData({ ...formData, eventDate: date.toISOString().substring(0, 10) })}
+            onChange={date => setFormData({ ...formData, eventDate: date.getTime() })}
+          />
+          <label htmlFor='eventLocation'>City</label>
+          <input
+            type='text'
+            name='eventLocation'
+            id='eventLocation'
+            placeholder='Event location (nearest city name)'
+            required
+            value={formData.eventLocation}
+            onChange={handleChange}
+          />
+        </div>
         <div className='formBtn'>
           <Link to={'/'}>
-            <img src={iconHome} alt='Homepage' type='submit'/>
+            <img src={iconHome} alt='Homepage' type='submit' />
           </Link>
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
           <button type='submit' ><img src={iconSave} alt='Save' /></button>

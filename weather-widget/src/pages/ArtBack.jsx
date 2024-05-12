@@ -5,10 +5,10 @@ import { dayOfWeek, month } from '../components/DateFormat.jsx'
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
-import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
+import iconArt from '../icons/wall_art_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconInfo from '../icons/info_FILL0_wght400_GRAD0_opsz24.svg'
-import iconLungs from '../icons/pulmonology_24dp_FILL0_wght400_GRAD0_opsz24.svg'
-import back from '../images/frame-back.jpg' // background image
+import iconAirQ from '../icons/factory_24dp_FILL0_wght400_GRAD0_opsz24.svg'
+import back from '../images/Back4_@2x.jpg' // background image
 
 export default function ArtBack() {
 
@@ -38,6 +38,24 @@ export default function ArtBack() {
     checkLocalStorage()
   }, [])
 
+  function airQText(){
+    if (airQ <= 1) {
+      return('Good')
+    }
+    if (airQ === 2) {
+      return('Fair')
+    }
+    if (airQ === 3) {
+      return('Moderate')
+    }
+    if (airQ === 4) {
+      return('Poor')
+    }
+    if (airQ >= 5) {
+      return('Very poor')
+    }
+  }
+
   return (
     <section id='info' style={{ backgroundImage: `url(${back})` }}>
       <div className='stickerEvent'>
@@ -46,8 +64,8 @@ export default function ArtBack() {
         <p className='eventDate'>{dayOfWeek[new Date(eventDate).getDay()]} {new Date(eventDate).getDate()} {month[new Date(eventDate).getMonth()]}</p>
       </div>
       <div id='air'>
-        <img src={iconLungs} alt='Air quality' />
-        <span>{airQ}</span>
+        <img src={iconAirQ} alt='Air quality' />
+        <span>{airQText()}</span>
       </div>
       <div className='artBack'>
         <div className='stampForecast'>

@@ -39,7 +39,7 @@ export default function Art() {
 
         // API: current weather (day zero)
         if (cnt < 1) {
-          console.log('api today')
+          // console.log('api today')
           const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
           const weather = {
             city: data.name,
@@ -60,7 +60,7 @@ export default function Art() {
         }
         // API: 16-day forecast (day 1 to 16)
         if ((cnt > 0) && (cnt < 17)) {
-          console.log('api 16')
+          // console.log('api 16')
           const { data } = await axios.get(`https:api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
           const weather = {
             city: data.city.name,
@@ -81,7 +81,7 @@ export default function Art() {
         }
         // API: 30-day climate forecast (day 17 to 30)
         if (cnt > 16) {
-          console.log('api 30')
+          // console.log('api 30')
           const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
           const weather = {
             city: data.city.name,

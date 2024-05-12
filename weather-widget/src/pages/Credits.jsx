@@ -6,7 +6,7 @@ import axios from 'axios'
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
-import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
+import iconArt from '../icons/wall_art_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import artBack from '../icons/partly_cloudy_day_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 // import back from '../images/frame-back.jpg' // background image
 
