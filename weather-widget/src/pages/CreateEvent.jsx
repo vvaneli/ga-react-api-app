@@ -107,7 +107,7 @@ export default function CreateEvent() {
           />
         </div>
         <div className='formBtn'>
-          <Link to={'/'}>
+          <Link to={'/home'}>
             <img src={iconHome} alt='Homepage' type='submit' />
           </Link>
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>

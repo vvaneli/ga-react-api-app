@@ -74,7 +74,7 @@ export default function ArtBack() {
           <p className='owDescription'>{description}</p>
         </div>
         <div className='iconBtn'>
-          <Link to={'/'}>
+          <Link to={'/home'}>
             <img src={iconHome} alt='Homepage' />
           </Link>
           <Link to={'/create-event'}>

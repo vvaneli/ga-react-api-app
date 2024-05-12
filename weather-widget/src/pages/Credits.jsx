@@ -65,7 +65,7 @@ export default function Art() {
           <p><small>Image: {copyright}. Weather: Open Weather</small></p>
         </aside>
       <div className='iconBtn'>
-        <Link to={'/'}>
+        <Link to={'/home'}>
           <img src={iconHome} alt='Homepage' />
         </Link>
         <Link to={'/create-event'}>

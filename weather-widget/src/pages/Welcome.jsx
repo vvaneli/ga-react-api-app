@@ -1,9 +1,24 @@
-import { Link } from "react-router-dom"
+import { useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 import coverImage from '../images/SK-A-3259_crop_698w440h.jpg' // cover image
 import logo from '../logo/FeelsLike_logo_349w220h.svg'
 
+
+
 export default function Welcome() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    function checkLocalStorage() {
+      // If local storage has the data, then go to art
+      if ((localStorage.getItem('events')) && (localStorage.getItem('weather'))  && (localStorage.getItem('airQuality'))) { // Not localStorage.events, because it's not an object
+        navigate('/art')
+      }
+    }
+    checkLocalStorage()
+  }, [])
+
   return (
     <>
       <Link to={'/create-event'}>
