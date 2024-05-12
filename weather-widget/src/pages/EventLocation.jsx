@@ -3,8 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 
 // Icons
-import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
-import iconWrongLoc from '../icons/wrong_location_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconClose from '../icons/close_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function EventLocation() {
@@ -78,13 +76,13 @@ export default function EventLocation() {
           error ?
             <div className='locatioListError'>
               <p className='errorMsg'>{error}</p>
-              <p className='errorEescapeBtn'>Edit Event</p>
+              <p className='errorEscapeBtn'>Edit Event</p>
             </div>
             :
             <div className='locationListError'>
               <p className='errorMsg'>{`We can't find this location. Go back and enter a valid city name, or choose another city nearby.`}</p>
               <Link to={'/create-event'}>
-                <p className='errorEescapeBtn'>Edit Event</p>
+                <p className='errorEscapeBtn'>Edit Event</p>
               </Link>
             </div>
         }

@@ -4,7 +4,7 @@ import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
 
 // Images and Icons
-import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
+import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
 import artBack from '../icons/partly_cloudy_day_24dp_FILL0_wght400_GRAD0_opsz24.svg'

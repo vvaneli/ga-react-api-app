@@ -3,10 +3,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import { dayOfWeek, month } from '../components/DateFormat.jsx'
 
 // Images and Icons
-import iconEditLoc from '../icons/edit_location_FILL0_wght400_GRAD0_opsz24.svg'
+import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconArt from '../icons/palette_FILL0_wght400_GRAD0_opsz24.svg'
 import iconInfo from '../icons/info_FILL0_wght400_GRAD0_opsz24.svg'
+import iconLungs from '../icons/pulmonology_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import back from '../images/frame-back.jpg' // background image
 
 export default function ArtBack() {
@@ -41,6 +42,10 @@ export default function ArtBack() {
         <h1 className='eventName'>{eventName}</h1>
         <p className='eventCity'>{eventLocation}</p>
         <p className='eventDate'>{dayOfWeek[new Date(eventDate).getDay()]} {new Date(eventDate).getDate()} {month[new Date(eventDate).getMonth()]}</p>
+      </div>
+      <div id='air'>
+        <img src={iconLungs} alt='Air quality' />
+        <span>5</span>
       </div>
       <div className='artBack'>
         <div className='stampForecast'>

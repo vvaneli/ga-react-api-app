@@ -8,8 +8,10 @@ export default function Art() {
   // State variables
   const [eventDayWeather, setEventDayWeather] = useState()
   const [error, setError] = useState('')
+  const [airQ, setAirQ] = useState()
 
   // Static variables
+  const grad = 2 // air quality index multiplication factor for image gradient
   const widgetWidth = 349 // Widget size
   const imgDimension = (widgetWidth * 1.5)  // Image size, max 2500px inc. margins
 
@@ -34,7 +36,8 @@ export default function Art() {
         // For 30 day forecast, valid cnt range is 1 to 30
         const cnt = (Math.round((JSON.parse(localStorage.getItem('events')).eventDate - (new Date()).getTime()) / (1000 * 3600 * 24)))
         const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
-        // console.log(data)
+        const air = await axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
+        setAirQ(((air.data.list[0].main.aqi) - 1) * grad)
         // setEventCity(data.city.name)
         setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
         // console.log(eventCity.name)  // Output: London
@@ -58,7 +61,8 @@ export default function Art() {
           <>
             <section id='art'>
               <Link to={'/art-back'}>
-                <div className='artImg' style={{ backgroundImage: `url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
+                {/* <div className='airQuality'></div> */}
+                <div className='artImg' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.${airQ}), rgba(0, 0, 0, 0.${airQ})), url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
                 </div>
               </Link>
             </section>
@@ -70,9 +74,9 @@ export default function Art() {
             <p>Waiting for the Weather</p>
             {/* <hr /> */}
             <aside>
-              {error &&<p><small className='errorMsg'>{error}</small></p>}
+              {error && <p><small className='errorMsg'>{error}</small></p>}
               <Link to={'/create-event'}>
-              {error && <p className='errorEescapeBtn'>Edit Event</p>}
+                {error && <p className='errorEscapeBtn'>Edit Event</p>}
               </Link>
             </aside>
           </section>

@@ -46,11 +46,11 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
   align-content: center;
 }
 
-#locationPicker{
+#locationPicker {
   justify-content: flex-end;
 }
 
-.scrollHeader{
+.scrollHeader {
   justify-content: space-between;
 }
 
@@ -141,6 +141,28 @@ section {
 .stampForecast {
   font-family: 'Abril Fatface', serif;
   text-align: center;
+}
+
+#air {
+  background-color: $colourSticker3;
+  display: float;
+  position: absolute;
+  font-size: 24px;
+  padding: 0px 8px 2px 8px;
+  border-radius: 10%;
+  margin-top: 125px;
+  margin-left: 40px;
+  rotate: 20deg;
+}
+
+#air img {
+  vertical-align: sub;
+  width: 25px;
+  padding-right: 0.2em;
+}
+
+#air img, #air span {
+  opacity: 65%;
 }
 
 .owFeelsLike,
@@ -239,6 +261,13 @@ section#art {
   border-radius: 15px;
 }
 
+.airQuality {
+  // opacity: 50%;
+  // background-color: rgba(0,0,0,0.5);
+  width: $widgetWidth;
+  height: $widgetHeight;
+}
+
 /* CREATE EVENT */
 
 .form-page {
@@ -291,7 +320,7 @@ input {
   border: 1px solid $colourWidgetShadow;
 }
 
-.scrollHeading{
+.scrollHeading {
   text-transform: uppercase;
   margin-top: 2pw;
   margin-left: 15px;
@@ -304,7 +333,7 @@ input {
   cursor: pointer;
 }
 
-.locationList{
+.locationList {
   margin: 0 auto;
   // margin-right: 15px;
   width: calc($widgetWidth - 32px);
@@ -316,7 +345,7 @@ input {
 
 .locationListError {
   height: calc($widgetHeight - 40px);
-  text-align: center;  
+  text-align: center;
 }
 
 .cityOption {
@@ -370,7 +399,7 @@ input {
   border: 1px solid $colourWidgetShadow;
 }
 
-.errorEescapeBtn {
+.errorEscapeBtn {
   margin-top: 1em;
   padding: 0.1em 1.5em;
   background-color: $colorTextError;
