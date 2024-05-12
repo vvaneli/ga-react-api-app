@@ -7,8 +7,8 @@ export default function Art() {
 
   // State variables
   const [eventDayWeather, setEventDayWeather] = useState()
+  const [airQ, setAirQ] = useState(0)
   const [error, setError] = useState('')
-  const [airQ, setAirQ] = useState()
 
   // Static variables
   const grad = 2 // air quality index multiplication factor for image gradient
@@ -30,45 +30,80 @@ export default function Art() {
   useEffect(() => {
     // Round up, otherwise today is counted as -1 (today's date should be day 0)
     const cnt = (Math.ceil((JSON.parse(localStorage.getItem('events')).eventDate - (new Date()).getTime()) / (1000 * 3600 * 24)))
-    console.log('count: ' + cnt)
+    // console.log('count: ' + cnt)
     async function getWeatherForecast() {
       try {
         // Get from local storage
         const lat = (JSON.parse(localStorage.getItem('events'))).lat
         const lon = (JSON.parse(localStorage.getItem('events'))).lon
-        
+
         // API: current weather (day zero)
-        if (cnt < 1){
-          console.log('today: ' + lat)
+        if (cnt < 1) {
+          console.log('api today')
           const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
-          // setEventDayWeather(data.list)
-          console.log('data: ' + data)
-          localStorage.setItem('weather', JSON.stringify(data))
+          const weather = {
+            city: data.name,
+            country: data.sys.country,
+            weatherId: data.weather[0].id,
+            weatherIcon: data.weather[0].icon,
+            description: data.weather[0].description,
+            temperatureC: data.main.feels_like,
+            cloudiness: data.clouds.all,
+            rain: data.rain,
+            gust: data.wind.gust,
+            dt: Date(data.dt), // date weather data created
+            api: 'now', // Options: now, 16day, 30day
+          }
+          // save weather data to localStorage and state variable
+          setEventDayWeather(weather)
+          localStorage.setItem('weather', JSON.stringify(weather))
         }
-        // API: 16 day forecast (day 1 to 16)
-        if ((cnt > 0 ) && (cnt < 17)) {
-          console.log('16: ' + lat)
+        // API: 16-day forecast (day 1 to 16)
+        if ((cnt > 0) && (cnt < 17)) {
+          console.log('api 16')
           const { data } = await axios.get(`https:api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
-          setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
-          localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+          const weather = {
+            city: data.city.name,
+            country: data.city.country,
+            weatherId: data.list[cnt - 1].weather[0].id,
+            weatherIcon: data.list[cnt - 1].weather[0].icon,
+            description: data.list[cnt - 1].weather[0].description,
+            temperatureC: data.list[cnt - 1].feels_like.day,
+            cloudiness: data.list[cnt - 1].clouds,
+            rain: data.list[cnt - 1].rain,
+            gust: data.list[cnt - 1].gust,
+            dt: Date(data.list[cnt - 1].dt),
+            api: '16day',
+          }
+          // save weather data to localStorage and state variable
+          localStorage.setItem('weather', JSON.stringify(weather))
+          setEventDayWeather(weather)
         }
-        // API: 30 day climate forecast (day 17 to 30)
+        // API: 30-day climate forecast (day 17 to 30)
         if (cnt > 16) {
-          console.log('30: ' + lat)
+          console.log('api 30')
           const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
-          setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
-          localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+          const weather = {
+            city: data.city.name,
+            country: data.city.country,
+            weatherId: data.list[cnt - 1].weather[0].id,
+            weatherIcon: data.list[cnt - 1].weather[0].icon,
+            description: data.list[cnt - 1].weather[0].description,
+            temperatureC: data.list[cnt - 1].feels_like.day,
+            cloudiness: data.list[cnt - 1].clouds,
+            rain: data.list[cnt - 1].rain,
+            gust: data.list[cnt - 1].gust,
+            dt: Date(data.list[cnt - 1].dt),
+            api: '30day',
+          }
+          // save weather data to localStorage and state variable
+          localStorage.setItem('weather', JSON.stringify(weather))
+          setEventDayWeather(weather)
         }
+        // API: Air pollution (current)
         const air = await axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
         setAirQ(((air.data.list[0].main.aqi) - 1) * grad)
-        // setEventCity(data.city.name)
-        // console.log(eventCity.name)  // Output: London
-        // console.log(eventCity.country)  // Output: GB
-        // console.log(eventDayWeather.clouds)  // Output: 18 (cloudiness %)
-        // console.log('dt: ' + eventDayWeather.dt + ', ' + eventDayWeather.dt.toUTCString())
-
-        // save weather data to localStorage
-        // localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+        // save Air Quality Index (integer from 1 Good to 5 Very Poor) to localStorage
         localStorage.setItem('airQuality', (air.data.list[0].main.aqi))
       } catch (error) {
         setError(error.message)
@@ -84,7 +119,7 @@ export default function Art() {
           <>
             <section id='art'>
               <Link to={'/art-back'}>
-                <div className='artImg' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.${airQ}), rgba(0, 0, 0, 0.${airQ})), url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weather[0].icon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
+                <div className='artImg' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.${airQ}), rgba(0, 0, 0, 0.${airQ})), url(https://framemark.vam.ac.uk/collections/${artObj[eventDayWeather.weatherIcon][0].id_img}/full/!${imgDimension},${imgDimension}/0/default.jpg)` }}>
                 </div>
               </Link>
             </section>

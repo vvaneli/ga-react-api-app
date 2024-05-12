@@ -23,16 +23,16 @@ export default function ArtBack() {
 
   useEffect(() => {
     function checkLocalStorage() {
-      // If local storage is empty, go to homepage
-      if (!localStorage.getItem('events')) { // Not localStorage.events, because it's not an object
+      // If local storage does not have the data, then go to homepage
+      if ((!localStorage.getItem('events')) && (!localStorage.getItem('weather'))  && (!localStorage.getItem('airQuality'))) { // Not localStorage.events, because it's not an object
         navigate('/')
       }
       // Otherwise get from local storage
       setEventName((JSON.parse(localStorage.getItem('events'))).eventName)
       setEventDate((JSON.parse(localStorage.getItem('events'))).eventDate)
       setEventLocation((JSON.parse(localStorage.getItem('events'))).eventLocation)
-      setTemperature(((JSON.parse(localStorage.getItem('weather'))).feels_like.day))
-      setDescription((JSON.parse(localStorage.getItem('weather'))).weather[0].description)
+      setTemperature(((JSON.parse(localStorage.getItem('weather'))).temperatureC))
+      setDescription((JSON.parse(localStorage.getItem('weather'))).description)
       setAirQ(JSON.parse(localStorage.getItem('airQuality')))
     }
     checkLocalStorage()

@@ -36,7 +36,7 @@ export default function Art() {
     async function getArtCredits() {
       try {
         // Get weather icon from local storage
-        const weatherIcon = ((JSON.parse(localStorage.getItem('weather'))).weather[0].icon)
+        const weatherIcon = ((JSON.parse(localStorage.getItem('weather'))).weatherIcon)
         // Call V&A API
         const { data } = await axios.get(`https://api.vam.ac.uk/v2/object/${artObj[weatherIcon][0].id_obj}`)
         setTitle(data.record.titles[0].title) // title of work
