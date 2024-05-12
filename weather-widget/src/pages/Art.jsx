@@ -28,25 +28,47 @@ export default function Art() {
 
   // Get weather forecast
   useEffect(() => {
+    // Round up, otherwise today is counted as -1 (today's date should be day 0)
+    const cnt = (Math.ceil((JSON.parse(localStorage.getItem('events')).eventDate - (new Date()).getTime()) / (1000 * 3600 * 24)))
+    console.log('count: ' + cnt)
     async function getWeatherForecast() {
       try {
         // Get from local storage
         const lat = (JSON.parse(localStorage.getItem('events'))).lat
         const lon = (JSON.parse(localStorage.getItem('events'))).lon
-        // For 30 day forecast, valid cnt range is 1 to 30
-        const cnt = (Math.round((JSON.parse(localStorage.getItem('events')).eventDate - (new Date()).getTime()) / (1000 * 3600 * 24)))
-        const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+        
+        // API: current weather (day zero)
+        if (cnt < 1){
+          console.log('today: ' + lat)
+          const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          // setEventDayWeather(data.list)
+          console.log('data: ' + data)
+          localStorage.setItem('weather', JSON.stringify(data))
+        }
+        // API: 16 day forecast (day 1 to 16)
+        if ((cnt > 0 ) && (cnt < 17)) {
+          console.log('16: ' + lat)
+          const { data } = await axios.get(`https:api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
+          localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+        }
+        // API: 30 day climate forecast (day 17 to 30)
+        if (cnt > 16) {
+          console.log('30: ' + lat)
+          const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
+          localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+        }
         const air = await axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
         setAirQ(((air.data.list[0].main.aqi) - 1) * grad)
         // setEventCity(data.city.name)
-        setEventDayWeather(data.list[cnt - 1]) // get the last item in the .list array
         // console.log(eventCity.name)  // Output: London
         // console.log(eventCity.country)  // Output: GB
         // console.log(eventDayWeather.clouds)  // Output: 18 (cloudiness %)
         // console.log('dt: ' + eventDayWeather.dt + ', ' + eventDayWeather.dt.toUTCString())
 
         // save weather data to localStorage
-        localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
+        // localStorage.setItem('weather', JSON.stringify(data.list[cnt - 1]))
         localStorage.setItem('airQuality', (air.data.list[0].main.aqi))
       } catch (error) {
         setError(error.message)

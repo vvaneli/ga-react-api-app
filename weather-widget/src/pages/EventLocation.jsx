@@ -32,9 +32,7 @@ export default function EventLocation() {
         // Get location from local storage
         const eventLocation = ((JSON.parse(localStorage.getItem('events'))).eventLocation)
         const { data } = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${eventLocation}&limit=50&appid=${import.meta.env.VITE_API_KEY}`)
-        console.log(data)
         setOptions(data)
-        // console.log(data)
       } catch (error) {
         setError(error.message)
       }
