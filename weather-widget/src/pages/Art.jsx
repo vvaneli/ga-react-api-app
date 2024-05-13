@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { artObj } from '../components/ArtObj.jsx'
 
-import { oldArt } from '../components/NoArt.jsx'
+import OldArt from '../components/OldArt.jsx'
 
 export default function Art() {
 
@@ -21,7 +21,7 @@ export default function Art() {
   
   // If local storage is empty, go to homepage
   useEffect(() => {
-    if (oldArt() === true){
+    if (OldArt() === true){
       navigate('/')
     }
   }, [])
@@ -39,8 +39,12 @@ export default function Art() {
 
         // API: current weather (day zero)
         if (cnt < 1) {
+          // console.log('date: ' + (JSON.parse((localStorage.getItem('events'))).eventDate.getDate()))
+          // console.log((Date.now().getDate()))
           // console.log('api today')
           const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          console.log('api 1 data: ')
+          console.log(data)
           const weather = {
             city: data.name,
             country: data.sys.country,
@@ -60,8 +64,9 @@ export default function Art() {
         }
         // API: 16-day forecast (day 1 to 16)
         if ((cnt > 0) && (cnt < 17)) {
-          // console.log('api 16')
-          const { data } = await axios.get(`https:api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          console.log('api 16 data: ')
+          console.log(data)
           const weather = {
             city: data.city.name,
             country: data.city.country,
@@ -83,6 +88,8 @@ export default function Art() {
         if (cnt > 16) {
           // console.log('api 30')
           const { data } = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/climate?lat=${lat}&lon=${lon}&cnt=${cnt}&units=metric&appid=${import.meta.env.VITE_API_KEY}`)
+          console.log('api 30 data: ')
+          console.log(data)
           const weather = {
             city: data.city.name,
             country: data.city.country,
@@ -101,10 +108,12 @@ export default function Art() {
           setEventDayWeather(weather)
         }
         // API: Air pollution (current)
-        const air = await axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
-        setAirQ(((air.data.list[0].main.aqi) - 1) * grad)
+        const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
+        console.log('api air : ')
+        console.log(data)
+        setAirQ(((data.list[0].main.aqi) - 1) * grad) // -1 so that AQI 1 will apply zero gradient to image overlay
         // save Air Quality Index (integer from 1 Good to 5 Very Poor) to localStorage
-        localStorage.setItem('airQuality', (air.data.list[0].main.aqi))
+        localStorage.setItem('airQuality', (data.list[0].main.aqi))
       } catch (error) {
         setError(error.message)
       }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { dayOfWeek, month } from '../components/DateFormat.jsx'
 
-import { NoArt } from '../components/NoArt.jsx'
+import NoArt from '../components/NoArt.jsx'
 
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'

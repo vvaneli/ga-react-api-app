@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
 
-import { NoArt } from '../components/NoArt.jsx'
+import NoArt from '../components/NoArt.jsx'
 
 // Images and Icons
 import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
