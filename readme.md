@@ -54,10 +54,10 @@ Create an application using React and a third-party API. Work in pairs over 2 da
 This was our first project working with React. It’s also the first time we have had to integrate an API into an application.
 
 # Wins
-Getting to grips with React state
-Working with multiple APIs
-Correctly targeting lots of  API endpoints
-Using local storage to handle data
+* Getting to grips with React state
+* Working with multiple APIs
+* Correctly targeting lots of  API endpoints
+* Using local storage to handle data
 
 # Key Learnings/Takeaways
 We learned how to build, troubleshoot and deploy an application written in React. We also learned how to call APIs inside our app, target API endpoints and work with the different data types returned.
