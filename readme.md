@@ -48,3 +48,25 @@ Create an application using React and a third-party API. Work in pairs over 2 da
 
 ## Kanban for project management
 ![kanban](https://res.cloudinary.com/vli/image/upload/v1715706300/feels_like/feelslike_kanban_q3wkr5.png)
+
+# Challenges
+This was our first project working with React. It’s also the first time we have had to integrate an API into an application.
+
+# Wins
+Getting to grips with React state
+Working with multiple APIs
+Correctly targeting lots of  API endpoints
+Using local storage to handle data
+
+# Key Learnings/Takeaways
+We learned how to build, troubleshoot and deploy an application written in React. We also learned how to call APIs inside our app, target API endpoints and work with the different data types returned.
+
+# Bugs
+Need to more thoroughly test redirects/ux when an event date is in the past.
+
+# Future Improvements
+Potential improvements include:
+* Ability to add more than 1 event to the widget.
+* Ability to add event time, in order to retrieve day/night images.
+* During the project, we found that artworks can be better at conveying the nuances of weather conditions than the weather icons typically used in a weather widget. Future improvements can use the weather id (instead of the weather icon) returned by the API to assign an artwork. Improvements can also be made to curation of the art collection to represent those weather conditions.
+* The art collection includes a probability for retrieving a ‘sunny side up’ (photo of a fried egg breakfast) if the weather prediction is sunny. We haven’t fully implemented it yet.
