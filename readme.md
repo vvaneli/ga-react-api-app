@@ -1,7 +1,21 @@
-# Deployment link
+# Feels Like... Another Weather Widget
+This proof-of-concept weather widget uses art to convey what the forecast will *feel like* for a particular day that’s meaningful to you.
+
+![Screenshot of app](https://res.cloudinary.com/vli/image/upload/v1715718018/feels_like/feels-like-index_drtwrf.png)
+
+The weather can have a significant effect on our mood and wellbeing. Weather forecast widgets usually show objective scientific data, but not our human connection to the natural elements. 
+
+Let’s say you have an outdoor event coming up in the next 30 days and you want to keep an eye on the weather for it. For example, a wedding, a picnic or a festival. Save the date and location into our app and we’ll show you a picture from the Victoria and Albert Museum’s (V&A) collection that matches the best available forecast for that day.
+
+The picture page will stay as the ‘home page’ in the run up to your event, but the art may change according to the changing predictions. If the air pollution is currently high at the location you are watching, the artwork’s visibility will be impaired (it appears darker the higher the pollution level). Flip the picture over and you’ll find more details on the forecast; these look like the provenance labels you may find at the back of a framed picture.
+
+## Live demo
+Demo and instructions: https://vli.me/demo/feels-like-weather.html
+
+## Deployment link
 https://feels-like-another-weather-widget.netlify.app
 
-# Code Installation
+## Code Installation
 Deploy React app, e.g. using Netlify: https://www.netlify.com/with/react/
 
 # Timeframe & Working Team
