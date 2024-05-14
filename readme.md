@@ -10,14 +10,15 @@ Subsequent improvements added thereafter.
 
 # Technologies Used
 * React
+* React date picker
 * SCSS
 * OpenWeather APIs:
-  * 30-day Climate Forecast
-  * 16-day Daily Weather Forecast
-  * Current Weather Forecast
+  * Climatic Forecast 30 days
+  * Daily Forecast 16 days
+  * Current Weather Data
   * Air Pollution
-  * Geocoding API
-* V&A API
+  * Geocoding
+* V&A (Victorial and Albert Museum) API
 * Web browser localStorage
 
 # Brief
@@ -27,7 +28,7 @@ Create an application using React and a third-party API. Work in pairs over 2 da
 1. Researched lots of different APIs
 2. Concept, visual research and design
 3. Defined user stories
-4. Wireframes
+4. Wireframes and user flow
 5. Define data flow
 6. Pseudocode
 7. Code and test
