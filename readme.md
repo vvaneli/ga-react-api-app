@@ -54,6 +54,7 @@ Create an application using React and a third-party API. Work in pairs over 2 da
 This was our first project working with React. It’s also the first time we have had to integrate an API into an application.
 
 # Wins
+Successes include:
 * Getting to grips with React state
 * Working with multiple APIs
 * Correctly targeting lots of  API endpoints
