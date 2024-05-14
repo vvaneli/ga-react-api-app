@@ -2,7 +2,7 @@
 https://feels-like-another-weather-widget.netlify.app
 
 # Code Installation
-Deploy React app using Netlify: https://www.netlify.com/with/react/
+Deploy React app, e.g. using Netlify: https://www.netlify.com/with/react/
 
 # Timeframe & Working Team
 The core application was built by a team of 2 people over 2 days.
