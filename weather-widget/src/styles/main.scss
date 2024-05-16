@@ -125,6 +125,7 @@ section.form-page {
 
 #info {
   color: $colourText2;
+  background-color: $colourWidgetBack;
 }
 
 .stampForecast {
@@ -195,19 +196,21 @@ img.disabledBtn {
   content: '\00B0' + 'C';
 }
 
-.eventName,
+// .eventName,
 .owDescription {
   text-transform: capitalize;
 }
 
 .circle {
-  margin: 0 auto;
+  margin-left: auto; 
+  margin-right: 15px;
   margin-top: auto;
   margin-bottom: 5px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background-color: $colourSticker2;
+  
 }
 
 .degreesNumBig {
@@ -261,8 +264,8 @@ img.disabledBtn {
 
 /* ART */
 
-section#art {
-  background-color: none;
+#art {
+  background-color: $colourSticker;
 }
 
 .artImg {
