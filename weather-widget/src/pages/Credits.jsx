@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link } from 'react-router-dom'
 import { artObj } from '../components/ArtObj.jsx'
 import axios from 'axios'
 
@@ -51,7 +51,7 @@ export default function Art() {
   }, [])
 
   return (
-    <section id="credits">
+    <section id='credits'>
       <div className='creditInfo'>
         <h1 className='title'>{title} <span className='titleDetail'>{!error && `(detail)`}</span></h1>
         <p className='artist'>{artist}</p>

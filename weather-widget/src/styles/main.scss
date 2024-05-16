@@ -107,8 +107,11 @@ section {
   height: $widgetHeight;
   overflow: hidden;
   border-radius: 15px;
-  background-color: $colourWidgetBack;
   box-shadow: 15px 15px 10px 5px $colourWidgetShadow; // x offset, y offset, blur, spread
+}
+
+section.form-page {
+  background-color: $colourWidgetBack;
 }
 
 /* HOME */
@@ -307,9 +310,7 @@ section#art {
 
 input,
 label {
-  // display: block;
   display: inline-block;
-  // margin: 3px 0;
   padding: 3px;
 }
 
@@ -398,14 +399,14 @@ input {
 
 /* ERRORS */
 
-.errorMsg {
-  color: $colorTextError;
-}
-
 #apiError {
   background-color: $colourSticker;
   text-align: center;
   border: 1px solid $colourWidgetShadow;
+}
+
+.errorMsg {
+  color: $colorTextError;
 }
 
 .errorEscapeBtn {
@@ -415,6 +416,18 @@ input {
   display: inline-block;
   color: $colourSticker;
   cursor: pointer;
+}
+
+@keyframes fadeUp {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+#apiError,
+.errorMsg,
+.errorEscapeBtn {
+animation-name: fadeUp;
+animation-duration: 2s;
 }
 
 /* CREDITS */

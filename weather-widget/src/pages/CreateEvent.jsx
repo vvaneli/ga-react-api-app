@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-// import axios from 'axios'
 import DatePicker from 'react-datepicker'
 // import 'react-datepicker/dist/react-datepicker.css' // copied to SCSS partial
 
