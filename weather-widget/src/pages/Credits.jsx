@@ -24,8 +24,8 @@ export default function Art() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (NoArt() === true){
-    // if (NoArt === true ){
+    if (NoArt() === true) {
+      // if (NoArt === true ){
       navigate('/')
     }
   }, [])
@@ -53,13 +53,13 @@ export default function Art() {
   return (
     <section id="credits">
       <div className='creditInfo'>
-        <h1 className='title'>{title} <span className='titleDetail'>(detail)</span></h1>
+        <h1 className='title'>{title} <span className='titleDetail'>{!error && `(detail)`}</span></h1>
         <p className='artist'>{artist}</p>
         <p className='date'>{date}</p>
       </div>
+      {error && <p><small>{error}</small></p>}
       <hr className='line' />
       <aside className='smallprint'>
-        <p><small>{error && <p><smallll>{error}</smallll></p>}</small></p>
         <p><small className='airQNotice'>When air pollution level is higher (from &lsquo;fair&rsquo; to &lsquo;very poor&rsquo;), art looks darker.</small></p>
         <p><small className='attribution'>Image: {copyright}. Weather: Open Weather</small></p>
       </aside>

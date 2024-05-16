@@ -74,9 +74,11 @@ export default function EventLocation() {
           )
           :
           error ?
-            <div className='locatioListError'>
+            <div className='locationListError'>
               <p className='errorMsg'>{error}</p>
-              <p className='errorEscapeBtn'>Edit Event</p>
+              <Link to={'/create-event'}>
+                <p className='errorEscapeBtn'>Edit Event</p>
+              </Link>
             </div>
             :
             <div className='locationListError'>

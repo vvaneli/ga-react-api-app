@@ -27,8 +27,7 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 #locationPicker,
 .scrollHeader,
 .iconBtn,
-.form,
-.formBtn {
+.form {
   display: flex;
 }
 
@@ -66,8 +65,7 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 }
 
 #apiError,
-.iconBtn,
-.formBtn {
+.iconBtn {
   justify-content: space-evenly;
 }
 
@@ -88,8 +86,9 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
   align-content: center;
 }
 
-.formBtn{
+.iconBtn {
   margin-top: auto;
+  height: 37px;
 }
 
 /* LAYOUT */
@@ -113,7 +112,9 @@ section {
 }
 
 /* HOME */
-.home, #info {
+
+.home,
+#info {
   background-size: cover;
 }
 
@@ -129,19 +130,20 @@ section {
   vertical-align: bottom;
 }
 
-.iconBtn img,
-.formBtn img {
-  cursor: pointer;
+.iconBtn img {
   width: 30px;
   height: 30px;
+
 }
 
-.iconBtn {
+.iconBtn img {
   opacity: 55%;
+  cursor: pointer;
 }
 
-.formBtn img {
-  opacity: 60%;
+img.disabledBtn {
+  opacity: 18%;
+  cursor: default;
 }
 
 .stampForecast {
@@ -168,7 +170,8 @@ section {
   padding-right: 0.2em;
 }
 
-#air img, #air span {
+#air img,
+#air span {
   opacity: 65%;
 }
 
@@ -214,7 +217,6 @@ section {
 .stickerEvent {
   max-width: calc($widgetWidth * 0.7);
   max-height: calc($widgetHeight * 0.56);
-  // overflow: hidden;
   margin: 20px 0 0 8px;
   box-sizing: border-box;
   padding: 14px 12px 0px 12px;
@@ -242,7 +244,6 @@ section {
   font-style: normal;
   text-transform: uppercase;
   font-size: 12px;
-  // padding: 0 6px;
   letter-spacing: 1px;
   display: inline-block;
   line-height: 0;
@@ -268,8 +269,6 @@ section#art {
 }
 
 .airQuality {
-  // opacity: 50%;
-  // background-color: rgba(0,0,0,0.5);
   width: $widgetWidth;
   height: $widgetHeight;
 }
@@ -277,13 +276,14 @@ section#art {
 /* CREATE EVENT */
 
 .form-page {
-  padding: 10px;
+  padding: 10px 0 0 0;
 }
 
 .formH1 {
   text-align: center;
   font-size: 22px;
-  line-height: 28px;;
+  line-height: 28px;
+  ;
 }
 
 .formH2 {
@@ -300,14 +300,9 @@ section#art {
   margin-bottom: 8px;
 }
 
-.form {
+.inputFields {
   margin: 0 auto;
   width: calc($widgetWidth - 40px);
-}
-
-.formBtn {
-  height: 30px;
-  // margin-top: 35px; // hack
 }
 
 input,
@@ -350,10 +345,9 @@ input {
 
 .locationList {
   margin: 0 auto;
-  // margin-right: 15px;
   width: calc($widgetWidth - 32px);
   height: calc($widgetHeight - 40px);
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   color: $colourText1;
 }
@@ -427,9 +421,7 @@ input {
 
 #credits {
   text-align: center;
-  // background-color: $colourSticker2;
   background-color: $colourSticker3;
-  // background-color: $colourSticker;
 }
 
 .title,
@@ -478,7 +470,6 @@ hr {
 
 .smallprint {
   font-size: 13px;
-
   padding: 0.5em 0.5em 1.5em 0.5em;
   line-height: 1em;
   letter-spacing: 0.05em;

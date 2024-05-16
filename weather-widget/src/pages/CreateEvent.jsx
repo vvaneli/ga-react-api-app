@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker'
 import iconHome from '../icons/home_24dp_FILL0_wght400_GRAD0_opsz24.svg'
 import iconReset from '../icons/delete_FILL0_wght400_GRAD0_opsz24.svg'
 import iconSave from '../icons/check_circle_FILL0_wght400_GRAD0_opsz24.svg'
+import iconEditLoc from '../icons/location_on_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function CreateEvent() {
 
@@ -105,10 +106,11 @@ export default function CreateEvent() {
             onChange={handleChange}
           />
         </div>
-        <div className='formBtn'>
+        <div className='iconBtn'>
           <Link to={'/home'}>
             <img src={iconHome} alt='Homepage' type='submit' />
           </Link>
+            <img className='disabledBtn' src={iconEditLoc} alt='' />
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
           <button type='submit' ><img src={iconSave} alt='Save' /></button>
         </div>

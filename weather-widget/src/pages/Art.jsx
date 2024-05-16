@@ -136,9 +136,8 @@ export default function Art() {
         )
         :
         (
-          <section id="apiError">
+          <section id='apiError'>
             <p>Waiting for the Weather</p>
-            {/* <hr /> */}
             <aside>
               {error && <p><small className='errorMsg'>{error}</small></p>}
               <Link to={'/create-event'}>
