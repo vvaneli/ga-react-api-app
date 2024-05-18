@@ -105,14 +105,14 @@ export default function CreateEvent() {
             onChange={handleChange}
           />
         </div>
-        <div className='iconBtn'>
+        <nav className='iconBtn'>
           <Link to={'/home'}>
-            <img src={iconHome} alt='Homepage' type='submit' />
+            <img src={iconHome} alt='Home' type='submit' />
           </Link>
             <img className='disabledBtn' src={iconEditLoc} alt='' />
           <button type='button' onClick={handleReset}><img src={iconReset} alt='Reset' /></button>
           <button type='submit' ><img src={iconSave} alt='Save' /></button>
-        </div>
+        </nav>
       </form>
     </section>
   )

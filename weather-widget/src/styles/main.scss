@@ -4,6 +4,7 @@
 
 @import './partials/react-datepicker';
 
+$iconBarHeight: 37px; // bottom nav bar height
 $widgetWidth: 349px;
 $widgetHeight: 220px;
 $colourText1: rgb(63, 55, 63);
@@ -33,6 +34,7 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 
 #root {
   min-height: 100vh;
+  min-height: 100svh;
   justify-content: center;
   align-items: center;
 }
@@ -44,7 +46,6 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 .form-page {
   display: flex;
   flex-direction: column;
-  height: $widgetHeight;
 }
 
 .form,
@@ -88,7 +89,7 @@ $colourWidgetShadow: rgba(0, 0, 0, 0.15);
 
 .iconBtn {
   margin-top: auto;
-  height: 37px;
+  height: $iconBarHeight;
 }
 
 /* LAYOUT */
@@ -114,6 +115,12 @@ section.form-page {
   background-color: $colourWidgetBack;
 }
 
+#apiError,
+#credits,
+.form-page {
+  height: $widgetHeight;
+}
+
 /* HOME */
 
 .home,
@@ -128,9 +135,15 @@ section.form-page {
   background-color: $colourWidgetBack;
 }
 
+.artBack,
+.stampForecast { 
+    height: calc($widgetHeight - $iconBarHeight);
+    overflow: visible;
+}
+
 .stampForecast {
   rotate: 10deg;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   vertical-align: bottom;
 }
 

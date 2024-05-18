@@ -63,20 +63,20 @@ export default function Art() {
         <p><small className='airQNotice'>When air pollution level is higher (from &lsquo;fair&rsquo; to &lsquo;very poor&rsquo;), art looks darker.</small></p>
         <p><small className='attribution'>Image: {copyright}. Weather: Open Weather</small></p>
       </aside>
-      <div className='iconBtn'>
+      <nav className='iconBtn'>
         <Link to={'/home'}>
-          <img src={iconHome} alt='Homepage' />
+          <img src={iconHome} alt='Home' />
         </Link>
         <Link to={'/create-event'}>
-          <img src={iconEditLoc} alt='Edit event and location' />
+          <img src={iconEditLoc} alt='Edit' />
         </Link>
         <Link to={'/art-back'}>
-          <img src={artBack} alt='Event weather' />
+          <img src={artBack} alt='Weather' />
         </Link>
         <Link to={'/art'}>
           <img src={iconArt} alt='Art' />
         </Link>
-      </div>
+      </nav>
     </section>
   )
 }

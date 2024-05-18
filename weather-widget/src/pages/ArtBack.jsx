@@ -24,8 +24,8 @@ export default function ArtBack() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (NoArt() === true){
-    // if (NoArt === true ){
+    if (NoArt() === true) {
+      // if (NoArt === true ){
       navigate('/')
     }
     setEventName((JSON.parse(localStorage.getItem('events'))).eventName)
@@ -56,36 +56,36 @@ export default function ArtBack() {
 
   return (
     <section id='info' style={{ backgroundImage: `url(${back})` }}>
-      <div className='stickerEvent'>
-        <h1 className='eventName'>{eventName}</h1>
-        <p className='eventCity'>{eventLocation}</p>
-        <p className='eventDate'>{dayOfWeek[new Date(eventDate).getDay()]} {new Date(eventDate).getDate()} {month[new Date(eventDate).getMonth()]}</p>
-      </div>
-      <div id='air'>
-        <img src={iconAirQ} alt='Air quality' />
-        <span>{airQText()}</span>
-      </div>
-      <div className='artBack'>
+      <main className='artBack'>
+        <div className='stickerEvent'>
+          <h1 className='eventName'>{eventName}</h1>
+          <p className='eventCity'>{eventLocation}</p>
+          <p className='eventDate'>{dayOfWeek[new Date(eventDate).getDay()]} {new Date(eventDate).getDate()} {month[new Date(eventDate).getMonth()]}</p>
+        </div>
+        <div id='air'>
+          <img src={iconAirQ} alt='Air quality' />
+          <span>{airQText()}</span>
+        </div>
         <div className='stampForecast'>
           <div className='circle degreesNumBig'><span className='degreesNum'>{temperature.toFixed(0)}</span></div>
           <p className='owFeelsLike'>{temperature.toFixed(0)}</p>
           <p className='owDescription'>{description}</p>
         </div>
-        <div className='iconBtn'>
-          <Link to={'/home'}>
-            <img src={iconHome} alt='Homepage' />
-          </Link>
-          <Link to={'/create-event'}>
-            <img src={iconEditLoc} alt='Edit event and location' />
-          </Link>
-          <Link to={'/credits'}>
-            <img src={iconInfo} alt='Credits' />
-          </Link>
-          <Link to={'/art'}>
-            <img src={iconArt} alt='Art' />
-          </Link>
-        </div>
-      </div>
+      </main>
+      <nav className='iconBtn'>
+        <Link to={'/home'}>
+          <img src={iconHome} alt='Home' />
+        </Link>
+        <Link to={'/create-event'}>
+          <img src={iconEditLoc} alt='Edit' />
+        </Link>
+        <Link to={'/credits'}>
+          <img src={iconInfo} alt='Credits' />
+        </Link>
+        <Link to={'/art'}>
+          <img src={iconArt} alt='Art' />
+        </Link>
+      </nav>
     </section>
   )
 }
