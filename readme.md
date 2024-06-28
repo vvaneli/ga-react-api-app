@@ -1,7 +1,10 @@
 # Feels Like... Another Weather Widget
 This proof-of-concept weather widget uses art to convey what the forecast will *feel like* for a particular day that’s meaningful to you.
 
-![Screenshot of app](https://res.cloudinary.com/vli/image/upload/v1715718018/feels_like/feels-like-index_drtwrf.png)
+Watch demo video on Vimeo (2 mins 18 secs): https://vimeo.com/970975090
+
+![Demo video screenshots](https://res.cloudinary.com/vli/image/upload/v1719610775/feels_like/FeelsLike_video.gif)
+<!-- ![Screenshot of app](https://res.cloudinary.com/vli/image/upload/v1715718018/feels_like/feels-like-index_drtwrf.png) -->
 
 The weather can have a significant effect on our mood and wellbeing. Weather forecast widgets usually show objective scientific data, but not our human connection to the natural elements. 
 
@@ -78,7 +81,7 @@ Successes include:
 We learned how to build, troubleshoot and deploy an application written in React. We also learned how to call APIs inside our app, target API endpoints and work with the different data types returned.
 
 # Bugs
-Need to more thoroughly test redirects/ux when an event date is in the past.
+Known bugs had all been fixed so far.
 
 # Future Improvements
 Potential improvements include:
