@@ -1,6 +1,6 @@
 # Feels Like... Another Weather Widget
 
-__🏆 OPEN WEATHER CHALLENGE 2024 – 🥈 2nd PRIZE WINNER__
+🏆 _**OPEN WEATHER CHALLENGE 2024**_ | 🥈 _**2nd PRIZE WINNER**_
 
 This proof-of-concept weather widget uses art to convey what the forecast will *feel like* for a particular day that’s meaningful to you.
 
