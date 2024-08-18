@@ -62,13 +62,13 @@ Afterwards, I added improvements to the application, working solo.
 
 ### Flowcharts
 
-###$ API
+### API
 ![API flow chart](https://res.cloudinary.com/vli/image/upload/v1715706300/feels_like/feelslike_apis_mwt4be.png)
 
-###$ Data
+### Data
 ![data flow chart](https://res.cloudinary.com/vli/image/upload/v1715706300/feels_like/feelslike_data_og6wij.png)
 
-###$ Kanban for project management
+### Kanban for project management
 ![kanban](https://res.cloudinary.com/vli/image/upload/v1715706300/feels_like/feelslike_kanban_q3wkr5.png)
 
 ## Challenges
