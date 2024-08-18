@@ -1,4 +1,7 @@
 # Feels Like... Another Weather Widget
+
+__🏆 OPEN WEATHER CHALLENGE 2024 – 🥈 2nd PRIZE WINNER__
+
 This proof-of-concept weather widget uses art to convey what the forecast will *feel like* for a particular day that’s meaningful to you.
 
 Watch demo video on Vimeo (2 mins 18 secs): https://vimeo.com/970975090
