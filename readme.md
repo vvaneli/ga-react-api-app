@@ -18,6 +18,8 @@ The picture page will stay as the ‘home page’ in the run up to your event, b
 Use it: https://feels-like-another-weather-widget.netlify.app
 Instructions: https://vli.me/demo/feels-like-weather.html
 
+Requires an API key to the OpenWeather APIs, 'developer' package: https://openweathermap.org/price
+
 ## Code Installation
 Deploy React app, e.g. using Netlify: https://www.netlify.com/with/react/
 
