@@ -27,7 +27,7 @@ Requires an API key to the OpenWeather APIs, 'Developer' package: https://openwe
 
 # Project background
 
-## Brief
+## Brief (student project)
 Create an application using React and a third-party API. Work in pairs over 2 days, using pair programming.
 
 ## Timeframe & Working Team
